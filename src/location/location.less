@@ -1,0 +1,103 @@
+// @file CSS styles for location controls
+// @copyright Digital Living Software Corp. 2014-2016
+
+.pip-location-edit,
+.pip-location,
+.pip-location-map,
+.pip-location-ip {
+    display: block;
+    md-input-container{
+      padding: 0px !important;
+    }
+
+    input{
+      margin-bottom: 0px !important;
+
+    }
+
+    md-input-group{
+      min-height: 56px;
+    }
+}
+
+.pip-location .pip-location-name {
+  //width: 100%;
+  text-align: left;
+  padding-left: 0px;
+  padding-right: 0px;
+  //font-family: @font-family;
+  font-size: 16px;
+  text-transform: none;
+  .flex-container();
+  .flex-direction-row();
+
+  .pip-icon {
+    margin-right: 26px;
+  }
+
+  &.md-button {
+    cursor: pointer;
+    margin-left: 0px;
+    width: 100%;
+  }
+
+  .pip-location-text {
+    vertical-align: middle;
+    line-height: 48px;
+    .flex-var();
+    .text-overflow();
+  }
+}
+        
+.pip-location-edit .pip-location-container,        
+.pip-location-edit .pip-location-empty,
+.pip-location .pip-location-container,
+.pip-location-map .pip-location-container,
+.pip-location-ip .pip-location-container {
+    position: relative;
+    min-width: 100px;
+    height: 100px;
+} 
+                
+.pip-location-edit {
+  md-input-container {
+    height: 30px;
+    margin-bottom: 0px;
+  }
+  .pip-location-container:focus {
+    outline: 1px solid rgb(33, 150, 243); //blue;
+  }
+}
+
+.pip-location-container > div {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+        
+.pip-location-edit .pip-location-empty,
+.pip-location-ip .pip-location-container,
+.pip-location-map .pip-location-container {
+    background-color: lightgrey;
+    background-image: url("images/location_bg.svg");
+    background-repeat: repeat-x;
+    background-size: 20px 100px;
+}
+        
+.pip-location-attachments{
+  md-input-group{
+    label:first-of-type{
+      margin-top: -6px;
+    }
+  }
+}
+
+.pip-location {
+  .pip-location-name {
+    height: 48px !important;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+}

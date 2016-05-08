@@ -1,0 +1,48 @@
+<div class="app-location">
+	<div class="tm16">
+		<h2>Location</h2>
+		<pip-location class="map-edit" pip-rebind="true"
+			pip-location-name="note.location_name" pip-location-pos="note.location">
+		</pip-location>
+
+		<pip-location class="map-edit" pip-rebind="true"
+					  pip-show-location-icon="true"
+					  pip-location-name="note.location_name" pip-location-pos="note.location">
+		</pip-location>
+
+		<pip-location class="map-edit" pip-rebind="true"
+					  pip-show-location-icon="true" pip-collapse="true"
+					  pip-location-name="note.location_name" pip-location-pos="note.location">
+		</pip-location>
+	</div>
+	
+	<div class="tm16">
+		<h2>Location Map</h2>
+		<pip-location-map class="map-edit" pip-rebind="true"
+			pip-location-pos="note.location">
+		</pip-location-map>
+	</div>
+	
+	<div class="tm16">
+		<h2>Location Edit</h2>
+		<pip-location-edit class="map-edit" ng-disabled="locationDisabled"
+			pip-location-name="note.location_name" pip-location-pos="note.location">
+		</pip-location-edit>
+	
+		<div class="m16">
+			<md-button ng-click="locationDisabled = !locationDisabled">Disable/Enable</md-button>
+		</div>
+		{{note.location_name}}
+		{{note.location}}
+		<pip-location-edit class="map-edit"
+						   pip-location-name="note.location_name1" pip-location-pos="note.location1">
+		</pip-location-edit>
+	</div>
+	
+	<div class="tm16">
+		<h2>Location IP</h2>
+		<pip-location-ip class="map-edit" pip-rebind="false"
+			pip-ipaddress="ipaddress">
+		</pip-location-ip>
+	</div>
+</div>

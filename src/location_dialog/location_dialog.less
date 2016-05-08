@@ -1,0 +1,81 @@
+// @file CSS styles for location edit dialog
+// @copyright Digital Living Software Corp. 2014-2016
+ 
+.pip-dialog.pip-location-edit-dialog {
+    height: 500px;
+    width: 400px;
+    overflow-x: hidden;
+    .pip-header {
+        .pip-progress-top {
+            width: ~"calc(100% + 49px)" !important;
+        }
+    }
+
+    .pip-body {
+        position: relative;
+        padding: 0px;
+    }
+
+    .pip-location-container {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color: lightgrey;
+    }
+                
+    .md-fab {
+        background-color: white !important;
+        padding-top: 0px !important;
+        md-icon {
+            color: rgba(0,0,0,0.54);
+            margin-top: 9px;
+            display: block;
+        }
+        & > span {
+            font-size: 24px;   
+            color: #808080;
+        }
+    }
+        
+    .md-fab.pip-zoom-in {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 16px;
+        right: 34px;
+        padding-top: 9px;
+    }
+
+    .md-fab.pip-zoom-out {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 72px;
+        right: 34px;
+        padding-top: 9px;
+    }
+
+    .md-fab.pip-set-location {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        bottom: 24px;
+        right: 24px;
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 768px){
+  .pip-location-edit-dialog {
+
+    .pip-footer{
+      -webkit-box-flex-direction: column !important ;
+      -moz-box-flex-direction:    column !important ;
+      -webkit-flex-direction:     column !important ;
+      -ms-flex-direction:         column !important ;
+      flex-direction:             column !important ;
+    }
+  }
+}
