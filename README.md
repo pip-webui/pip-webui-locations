@@ -1,4 +1,4 @@
-# Pip.WebUI Location Controls http://git.pipdevs.com/pip-webui/pip-webui-locations
+# Pip.WebUI Location Controls http://github.com/pip-webui/pip-webui-locations
 
 Web controls to visualize and edit locations
 
@@ -88,10 +88,10 @@ Change to your project's root directory.
 
 ```bash
 # To install only core services with dependencies.
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-lib.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-core.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-locations.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-lib.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-core.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-locations.git
 
 # To install the entire pip-webui library
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui.git
+npm install git+ssh://git@github.com:pip-core/pip-webui.git
 ```
