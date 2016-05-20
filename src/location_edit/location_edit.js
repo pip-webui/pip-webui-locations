@@ -228,7 +228,6 @@
                             return $scope.pipLocationPos
                         },
                         function () {
-                            console.log('pipLocationPos watched');
                             generateMap();
                         }
                     );

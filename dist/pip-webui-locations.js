@@ -696,7 +696,6 @@ module.run(['$templateCache', function($templateCache) {
                             return $scope.pipLocationPos
                         },
                         function () {
-                            console.log('pipLocationPos watched');
                             generateMap();
                         }
                     );
