@@ -26,7 +26,7 @@
     "build": "gulp build",
     "lint": "gulp lint",
     "samples": "gulp launch",
-    "test": "mocha -t 5000 -R spec --recursive ./test"
+    "test": "karma start"
   },
   "dependencies": {
   },
@@ -44,9 +44,12 @@
     "karma-ng-html2js-preprocessor": "^0.2.0",
     "karma-ng-json2js-preprocessor": "^1.1.1",
     "karma-sinon": "*",
-    "mocha": "^2.3.4",
-    "sinon": "^1.17.2",
-    "chai": "^3.4.1",
+    "karma-mocha": "*",
+    "mocha": "*",
+    "karma-chai": "*",
+    "chai": "*",
+    "karma-sinon": "*",
+    "sinon": "*",
     "jshint": "*",
     "gulp": "*",
     "gulp-concat": "*",
