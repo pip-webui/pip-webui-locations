@@ -1,83 +1,62 @@
 // Karma configuration
 // Generated on Tue Aug 25 2015 20:04:51 GMT-0700 (US Mountain Standard Time)
 
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+    'use strict';
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'src',
+    config.set({
 
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: 'src',
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon'],
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['mocha', 'chai', 'sinon'],
 
+        // list of files / patterns to load in the browser
+        files: [
+            '../node_modules/pip-webui-lib/dist/pip-webui-lib.js',
+            '../node_modules/pip-webui-core/dist/pip-webui-core.js',
+            '../build/pip-webui-locations-html.js',
+            '../node_modules/angular-mocks/angular-mocks.js',
+            '**/*.js',
+            '**/*.html',
+            '../test/test_config.js',
+            '../test/**/*.js'
+        ],
 
-    // list of files / patterns to load in the browser
-    files: [
-      '../node_modules/pip-webui-lib/dist/pip-webui-lib.js',
-      '../node_modules/pip-webui-core/dist/pip-webui-core.js',
-      '../build/pip-webui-locations-html.js',
-      '../node_modules/angular-mocks/angular-mocks.js',
-      '**/*.js',
-      '**/*.html',
-      '../test/test_config.js',
-      '../test/**/*.js'
-    ],
+        // list of files to exclude
+        exclude: [],
 
-    // list of files to exclude
-    exclude: [
-    ],
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 
-    //plugins: [
-    //  'karma-ng-html2js-preprocessor',
-    //  'karma-mocha',
-    //  'karma-chai',
-    //  'karma-sinon'
-    //],
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress'],
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        // web server port
+        port: 9876,
 
-    preprocessors: {
-      //'**/*.html': ['ng-html2js']
-    },
-//
-    //ngHtml2JsPreprocessor: {
-    //  moduleName: 'templates'
-    //},
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN
+        // || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
 
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
 
-    // web server port
-    port: 9876,
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['PhantomJS'],
+        // browsers: ['Chrome'],
 
-
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
-    // browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
-  })
-}
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: true
+    });
+};
