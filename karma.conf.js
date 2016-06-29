@@ -18,7 +18,8 @@ module.exports = function (config) {
             '../node_modules/pip-webui-lib/dist/pip-webui-lib.js',
             '../node_modules/pip-webui-core/dist/pip-webui-core.js',
             '../temp/pip-webui-locations-html.js',
-            '../node_modules/angular-mocks/angular-mocks.js',
+            '../node_modules/pip-webui-tasks/node_modules/angular-mocks/angular-mocks.js',  // for old NPM versions
+            '../node_modules/angular-mocks/angular-mocks.js',  // for new NPM folders system
             '**/*.js',
             '**/*.html',
             '../test/test_config.js',
@@ -53,7 +54,6 @@ module.exports = function (config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: ['PhantomJS'],
-        // browsers: ['Chrome'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

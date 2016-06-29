@@ -1,28 +1,25 @@
-'use strict';
-
 describe('pipEnums', function () {
+    'use strict';
+
     var pipEnums;
 
     beforeEach(module('pipRest.Enums'));
 
-    beforeEach(inject(function(_pipEnums_) {
+    beforeEach(inject(function (_pipEnums_) {
         pipEnums = _pipEnums_;
     }));
-
-
-
+    
     it('SHARE_LEVEL', function () {
-        assert.isDefined(pipEnums.SHARE_LEVEL);
+        expect(pipEnums.SHARE_LEVEL).to.isDefined;
     });
 
     it('GENDER', function () {
-        assert.isDefined(pipEnums.GENDER);
+        expect(pipEnums.GENDER).to.isDefined;
 
-        assert.isDefined(pipEnums.GENDERS);
-        assert.lengthOf(pipEnums.GENDERS, 3);
-        assert.include(pipEnums.GENDERS, 'male');
-        assert.include(pipEnums.GENDERS, 'female');
-        assert.include(pipEnums.GENDERS, 'n/s');
+        expect(pipEnums.GENDERS).to.have.lengthOf(3);
+        expect(pipEnums.GENDERS).to.include('male');
+        expect(pipEnums.GENDERS).to.include('female');
+        expect(pipEnums.GENDERS).to.include('n/s');
 
     });
 });
