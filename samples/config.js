@@ -18,14 +18,14 @@
                 state: 'location',
                 url: '/location',
                 controller: 'LocationController',
-                templateUrl: 'location.html'
+                templateUrl: '../samples/location/location.html'
             },
             {
                 title: 'DIALOG',
                 state: 'dialogs',
                 url: '/dialogs',
                 controller: 'DialogsController',
-                templateUrl: 'dialogs.html'
+                templateUrl: '../samples/dialogs/dialogs.html'
             }
             ], i, contentItem;
 
