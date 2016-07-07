@@ -1,48 +1,80 @@
-<div class="app-location">
-	<div class="tm16">
-		<h2>Location</h2>
-		<pip-location class="map-edit" pip-rebind="true"
-			pip-location-name="note.location_name" pip-location-pos="note.location">
-		</pip-location>
+<h2 class="text-title tm0 bm24">{{ 'LOCATION' | translate }} {{ 'SAMPLES' | translate }}:</h2>
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }}</h3>
 
-		<pip-location class="map-edit" pip-rebind="true"
-					  pip-show-location-icon="true"
-					  pip-location-name="note.location_name" pip-location-pos="note.location">
-		</pip-location>
+<pip-location class="map-edit" pip-rebind="true"
+              pip-location-name="note.location_name" pip-location-pos="note.location">
+</pip-location>
 
-		<pip-location class="map-edit" pip-rebind="true"
-					  pip-show-location-icon="true" pip-collapse="true"
-					  pip-location-name="note.location_name" pip-location-pos="note.location">
-		</pip-location>
-	</div>
-	
-	<div class="tm16">
-		<h2>Location Map</h2>
-		<pip-location-map class="map-edit" pip-rebind="true"
-			pip-location-pos="note.location">
-		</pip-location-map>
-	</div>
-	
-	<div class="tm16">
-		<h2>Location Edit</h2>
-		<pip-location-edit class="map-edit" ng-disabled="locationDisabled"
-			pip-location-name="note.location_name" pip-location-pos="note.location">
-		</pip-location-edit>
-	
-		<div class="m16">
-			<md-button ng-click="locationDisabled = !locationDisabled">Disable/Enable</md-button>
-		</div>
-		{{note.location_name}}
-		{{note.location}}
-		<pip-location-edit class="map-edit"
-						   pip-location-name="note.location_name1" pip-location-pos="note.location1">
-		</pip-location-edit>
-	</div>
-	
-	<div class="tm16">
-		<h2>Location IP</h2>
-		<pip-location-ip class="map-edit" pip-rebind="false"
-			pip-ipaddress="ipaddress">
-		</pip-location-ip>
-	</div>
-</div>
+<pip-location class="map-edit" pip-rebind="true"
+              pip-show-location-icon="true"
+              pip-location-name="note.location_name" pip-location-pos="note.location">
+</pip-location>
+
+<pip-location class="map-edit" pip-rebind="true"
+              pip-show-location-icon="true" pip-collapse="true"
+              pip-location-name="note.location_name" pip-location-pos="note.location">
+</pip-location>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-location</strong>  class="map-edit" pip-rebind="true"
+                                    pip-location-name="note.location_name"
+                                    pip-location-pos="note.location"&gt;
+            &lt;/<strong>pip-location</strong>&gt;
+
+            &lt;<strong>pip-location</strong>  class="map-edit" pip-rebind="true"
+                                    <strong>pip-show-location-icon="true"</strong>
+                                    pip-location-name="note.location_name" pip-location-pos="note.location"&gt;
+            &lt;/<strong>pip-location</strong>&gt;
+
+            &lt;<strong>pip-location</strong>  class="map-edit" pip-rebind="true"
+                                    <strong>pip-show-location-icon="true" pip-collapse="true"</strong>
+                                    pip-location-name="note.location_name" pip-location-pos="note.location"&gt;
+            &lt;/<strong>pip-location</strong>&gt;
+</pre>
+
+<md-divider class="tm8"></md-divider>
+
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} Map</h3>
+<pip-location-map class="map-edit" pip-rebind="true"
+                  pip-location-pos="note.location">
+</pip-location-map>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-location-map</strong>  class="map-edit" pip-rebind="true"
+                                        pip-location-pos="note.location"&gt;
+            &lt;/<strong>pip-location-map</strong>&gt;
+</pre>
+
+<md-divider class="tm8"></md-divider>
+
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} Edit</h3>
+<pip-location-edit class="map-edit" ng-disabled="locationDisabled"
+                   pip-location-name="note.location_name" pip-location-pos="note.location">
+</pip-location-edit>
+
+<md-button class="lm0" ng-click="locationDisabled = !locationDisabled">Disable/Enable</md-button>
+</br>
+{{note.location_name}}
+{{note.location}}
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-location-edit</strong>  class="map-edit" ng-disabled="locationDisabled"
+                                        pip-location-name="note.location_name" pip-location-pos="note.location"&gt;
+            &lt;/<strong>pip-location-edit</strong>&gt;
+</pre>
+
+<md-divider class="tm8"></md-divider>
+
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} IP</h3>
+<pip-location-ip class="map-edit" pip-rebind="false"
+                 pip-ipaddress="ipaddress">
+</pip-location-ip>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-location-ip</strong> class="map-edit" pip-rebind="false"
+                                    pip-ipaddress="ipaddress"&gt;
+            &lt;/<strong>pip-location-ip</strong>&gt;
+</pre>

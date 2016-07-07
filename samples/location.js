@@ -1,12 +1,11 @@
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appLocations.Location', []);
 
     thisModule.controller('LocationController',
-        function($scope) {
+        function ($scope) {
             $scope.note = {
                 location_name: '780 W. Lost Creek Place, Tucson, AZ 85737',
                 location: {
@@ -22,4 +21,4 @@
         }
     );
 
-})();
+})(window.angular);

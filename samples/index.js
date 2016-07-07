@@ -1,109 +1,62 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
-
-    var content = [
-        { title: 'Location', state: 'location', url: '/location', controller: 'LocationController', templateUrl: 'location.html' },
-        { title: 'Dialogs', state: 'dialogs', url: '/dialogs', controller: 'DialogsController', templateUrl: 'dialogs.html' }
-    ];
-
-    var thisModule = angular.module('appLocations', 
+    var thisModule = angular.module('appLocations',
         [
+            'pipSampleConfig',
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
-            'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate', 
-			'pipCore', 'pipLocations',
+            'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
+            'pipCore', 'pipLocations',
             'appLocations.Location', 'appLocations.Dialogs'
         ]
     );
 
-    thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider) {
-            $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
+    thisModule.controller('AppController',
+        function ($scope, $rootScope, $state, pipAppBar, $timeout) {
 
-//             $mdThemingProvider.theme('blue')
-//                 .primaryPalette('blue')
-//                 .accentPalette('green');
-// 
-//             $mdThemingProvider.theme('pink')
-//                 .primaryPalette('pink')
-//                 .accentPalette('orange');
-// 
-//             $mdThemingProvider.theme('green')
-//                 .primaryPalette('green')
-//                 .accentPalette('purple');
-// 
-//             $mdThemingProvider.theme('grey')
-//                 .primaryPalette('grey')
-//                 .accentPalette('yellow');
-// 
-//             $mdThemingProvider.setDefaultTheme('blue');
+            $scope.pages = [
+                {
+                    title: 'LOCATION',
+                    state: 'location',
+                    url: '/location',
+                    controller: 'LocationController',
+                    templateUrl: 'location.html'
+                },
+                {
+                    title: 'DIALOG',
+                    state: 'dialogs',
+                    url: '/dialogs',
+                    controller: 'DialogsController',
+                    templateUrl: 'dialogs.html'
+                }
+            ];
 
-            // String translations
-            pipTranslateProvider.translations('en', {
-                'APPLICATION_TITLE': 'WebUI Sampler',
-
-                'blue': 'Blue Theme',
-                'green': 'Green Theme',
-                'pink': 'Pink Theme',
-                'grey': 'Grey Theme'
+            $scope.selected = {};
+            $timeout(function () {
+                $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
             });
 
-            pipTranslateProvider.translations('ru', {
-                'APPLICATION_TITLE': 'WebUI Демонстратор',
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('LOCATION_CONTROLS');
 
-                'blue': 'Голубая тема',
-                'green': 'Зеленая тема',
-                'pink': 'Розовая тема',
-                'grey': 'Серая тема'
-            });
-
-            for (var i = 0; i < content.length; i++) {
-                var contentItem = content[i];
-                $stateProvider.state(contentItem.state, contentItem);
-            }
-                
-            $urlRouterProvider.otherwise('/location');
-        } 
-    );
-
-    thisModule.controller('AppController', 
-        function ($scope, $rootScope, $state, $mdSidenav, pipTranslate, $mdTheming, pipTheme, $mdMedia, localStorageService) {
-            $scope.languages = ['en', 'ru'];
-            $scope.themes = _.keys(_.omit($mdTheming.THEMES, 'default'));
-            $rootScope.$theme = localStorageService.get('theme');
-
-            $scope.content = content;
-            $scope.menuOpened = false;
-
-            $scope.onLanguageClick = function(language) {
-                pipTranslate.use(language);
+            $scope.onNavigationSelect = function (stateName) {
+                if ($state.current.name !== stateName) {
+                    $state.go(stateName);
+                }
             };
 
-            $scope.onThemeClick = function(theme) {
-                $rootScope.$theme = theme;
-                pipTheme.setCurrentTheme(theme);
-            };
-                        
-            $scope.onSwitchPage = function(state) {
-                $mdSidenav('left').close();
-                $state.go(state);
-            };
-            
-            $scope.onToggleMenu = function() {
-                $mdSidenav('left').toggle();
-            };
-                        
-            $scope.isActiveState = function(state) {
-                return $state.current.name == state;  
+            $scope.onDropdownSelect = function (obj) {
+                if ($state.current.name !== obj.state) {
+                    $state.go(obj.state);
+                }
             };
 
-            $scope.isPadding = function () {
-                if (!$rootScope.$state) return true;
-
-                return !($rootScope.$state.name == 'tabs' || ($rootScope.$state.name == 'dropdown' && $mdMedia('xs')))
-            }
+            $scope.isEntryPage = function () {
+                return $state.current.name === 'signin' || $state.current.name === 'signup' ||
+                    $state.current.name === 'recover_password' || $state.current.name === 'post_signup';
+            };
         }
     );
 
-})();
+})(window.angular);

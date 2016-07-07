@@ -1,3 +1,20 @@
-<div class="tm16">
-	<md-button ng-click="openLocationEditDialog()">{{ 'OPEN_LOCATION' | translate }}</md-button>
-</div>
+<h2 class="text-title tm0 bm24">{{ 'LOCATION' | translate }} {{ 'DIALOG' | translate }} :</h2>
+
+<md-button class="lm0 tm0" ng-click="openLocationEditDialog()">{{ 'OPEN_LOCATION' | translate }}</md-button>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+            <strong>pipLocationEditDialog.show</strong>(
+                    {
+                        locationName: $scope.note.location_name,
+                        locationPos: $scope.note.location_pos
+                    },
+                    function (result) {
+                        console.log('Selected New Location');
+                        console.log(result);
+
+                        if (result)
+                            $scope.note.location_pos = result.locationPos;
+                    }
+                );
+</pre>
