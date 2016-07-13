@@ -13,7 +13,13 @@
     });
 
     thisModule.controller('DialogsController',
-        function ($scope, pipLocationEditDialog) {
+        function ($scope, pipLocationEditDialog, pipAppBar) {
+
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('LOCATION_CONTROLS');
+            
             $scope.note = {
                 location_name: '780 W. Lost Creek Place, Tucson, AZ 85737',
                 location_pos: {

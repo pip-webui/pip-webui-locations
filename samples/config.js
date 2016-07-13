@@ -17,6 +17,7 @@
                 title: 'LOCATION',
                 state: 'location',
                 url: '/location',
+                auth: false,
                 controller: 'LocationController',
                 templateUrl: '../samples/location/location.html'
             },
@@ -24,6 +25,7 @@
                 title: 'DIALOG',
                 state: 'dialogs',
                 url: '/dialogs',
+                auth: false,
                 controller: 'DialogsController',
                 templateUrl: '../samples/dialogs/dialogs.html'
             }
@@ -58,10 +60,10 @@
         pipSideNavProvider.sections([
             {
                 links: [{title: 'LOCATION_CONTROLS', url: '/list'}]
-            },
+            }/*,
             {
                 links: [{title: 'SIGNOUT', url: '/signout'}]
-            }
+            }*/
         ]);
     });
 

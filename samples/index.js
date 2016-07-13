@@ -6,7 +6,7 @@
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
-            'pipCore', 'pipLocations',
+            'pipCore', 'pipLocations', 'pipLayout',
             'appLocations.Location', 'appLocations.Dialogs'
         ]
     );
@@ -35,10 +35,6 @@
             $timeout(function () {
                 $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
             });
-
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('LOCATION_CONTROLS');
 
             $scope.onNavigationSelect = function (stateName) {
                 if ($state.current.name !== stateName) {
