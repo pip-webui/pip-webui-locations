@@ -19,7 +19,7 @@
                 url: '/location',
                 auth: false,
                 controller: 'LocationController',
-                templateUrl: '../samples/location/location.html'
+                templateUrl: 'location/location.html'
             },
             {
                 title: 'DIALOG',
@@ -27,7 +27,7 @@
                 url: '/dialogs',
                 auth: false,
                 controller: 'DialogsController',
-                templateUrl: '../samples/dialogs/dialogs.html'
+                templateUrl: 'dialogs/dialogs.html'
             }
             ], i, contentItem;
 
