@@ -17,6 +17,8 @@
 
 <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
+        <strong>HTML: </strong>
+
             &lt;<strong>pip-location</strong>  class="map-edit" pip-rebind="true"
                                     pip-location-name="note.location_name"
                                     pip-location-pos="note.location"&gt;
@@ -31,11 +33,21 @@
                                     <strong>pip-show-location-icon="true" pip-collapse="true"</strong>
                                     pip-location-name="note.location_name" pip-location-pos="note.location"&gt;
             &lt;/<strong>pip-location</strong>&gt;
+
+        <strong>JS: </strong>
+
+            <strong>$scope.note</strong> = {
+                <strong>location_name</strong>: '780 W. Lost Creek Place, Tucson, AZ 85737',
+                <strong>location</strong>: {
+                    type: 'Point',
+                    coordinates: [32.393603, -110.982593]
+                }
+            };
 </pre>
 
-<md-divider class="tm8"></md-divider>
+<md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h3 class="text-subhead2">{{ 'LOCATION' | translate }} Map</h3>
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'MAP' | translate }}</h3>
 <pip-location-map class="map-edit" pip-rebind="true"
                   pip-location-pos="note.location">
 </pip-location-map>
@@ -47,9 +59,9 @@
             &lt;/<strong>pip-location-map</strong>&gt;
 </pre>
 
-<md-divider class="tm8"></md-divider>
+<md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h3 class="text-subhead2">{{ 'LOCATION' | translate }} Edit</h3>
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'EDIT' | translate }}</h3>
 <pip-location-edit class="map-edit" ng-disabled="locationDisabled"
                    pip-location-name="note.location_name" pip-location-pos="note.location">
 </pip-location-edit>
@@ -65,16 +77,22 @@
             &lt;/<strong>pip-location-edit</strong>&gt;
 </pre>
 
-<md-divider class="tm8"></md-divider>
+<md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h3 class="text-subhead2">{{ 'LOCATION' | translate }} IP</h3>
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'BY_IP' | translate }}</h3>
 <pip-location-ip class="map-edit" pip-rebind="false"
                  pip-ipaddress="ipaddress">
 </pip-location-ip>
 
 <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
+        <strong>HTML: </strong>
+
             &lt;<strong>pip-location-ip</strong> class="map-edit" pip-rebind="false"
-                                    pip-ipaddress="ipaddress"&gt;
+                                    <strong>pip-ipaddress="ipaddress"</strong>&gt;
             &lt;/<strong>pip-location-ip</strong>&gt;
+
+        <strong>JS: </strong>
+
+            <strong>$scope.ipaddress</strong> = '96.17.143.194';
 </pre>

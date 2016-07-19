@@ -22,7 +22,7 @@
                 location_name1: null
             };
 
-            $scope.locationDisabled = true;
+            $scope.locationDisabled = false;
             $scope.ipaddress = '96.17.143.194';
         }
     );

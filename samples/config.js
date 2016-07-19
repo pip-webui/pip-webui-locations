@@ -38,7 +38,10 @@
             LOCATION: 'Location',
             DIALOG: 'Dialog',
             SIGNOUT: 'Sign out',
-            SAMPLES: 'samples'
+            SAMPLES: 'samples',
+            MAP: 'map',
+            EDIT: 'edit',
+            BY_IP: 'by IP'
         });
 
         pipTranslateProvider.translations('ru', {
@@ -46,7 +49,10 @@
             LOCATION: 'Местонахождение',
             DIALOG: 'Диалог',
             SIGNOUT: 'Выйти',
-            SAMPLES: 'примеры'
+            SAMPLES: 'примеры',
+            MAP: 'карта',
+            EDIT: 'редактирование',
+            BY_IP: 'по IP'
         });
 
         for (i = 0; i < content.length; i++) {
