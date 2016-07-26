@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="../lib/pip-webui-css.css"/>
     <link rel="stylesheet" href="../lib/pip-webui-layouts.css"/>
     <link rel="stylesheet" href="../lib/pip-webui-nav.css"/>
-    <link rel="stylesheet" href="../lib/pip-webui-entry.css"/>
-    <link rel="stylesheet" href="../lib/pip-webui-pictures.css"/>
     <link rel="stylesheet" href="../lib/pip-webui-controls.css"/>
     <link rel="stylesheet" href="../dist/pip-webui-locations.css"/>
+
+    <link rel="stylesheet" href="../node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="../node_modules/pip-webui-tasks/node_modules/prismjs/themes/prism.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 
@@ -26,12 +27,13 @@
     <script src="../lib/pip-webui-lib.js"></script>
     <script src="../lib/pip-webui-core.js"></script>
     <script src="../lib/pip-webui-layouts.js"></script>
-    <script src="../lib/pip-webui-pictures.js"></script>
-    <script src="../lib/pip-webui-entry.js"></script>
     <script src="../lib/pip-webui-nav.js"></script>
     <script src="../lib/pip-webui-rest.js"></script>
     <script src="../lib/pip-webui-controls.js"></script>
     <script src="../dist/pip-webui-locations.js"></script>
+
+    <script src="../node_modules/prismjs/prism.js"></script>
+    <script src="../node_modules/pip-webui-tasks/node_modules/prismjs/prism.js"></script>
 
     <script src="index.js"></script>
     <script src="config.js"></script>
@@ -48,7 +50,7 @@
     <pip-sidenav>
     </pip-sidenav>
 
-    <pip-main-body ng-cloak class="layout-column pip-main-body" ng-if="!isEntryPage()">
+    <pip-main-body ng-cloak class="layout-column pip-main-body" >
         <md-toolbar class="pip-appbar-ext">
         </md-toolbar>
         <pip-document class="pip-document">
@@ -70,12 +72,11 @@
                                   pip-actions="pages"
                                   pip-dropdown-select="onDropdownSelect"
                                   pip-active-index="selected.pageIndex"></pip-dropdown>
-                    <div ui-view class="p24"></div>
+                    <div ui-view class="p24 scrolled"></div>
                 </div>
             </div>
         </pip-document>
     </pip-main-body>
-    <pip-main-body ng-if="isEntryPage()" class="pip-main-body" ui-view></pip-main-body>
 </pip-main>
 </body>
 </html>

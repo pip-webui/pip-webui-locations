@@ -6,7 +6,7 @@
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
-            'pipCore', 'pipLocations', 'pipLayout',
+            'pipCore', 'pipLocations', 'pipLayout', 'pipDropdown',
             'appLocations.Location', 'appLocations.Dialogs'
         ]
     );

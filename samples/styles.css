@@ -1,29 +1,21 @@
-.pip-content-container {
-    box-sizing: border-box;
+.pip-content-container .scrolled {
     overflow-y: auto;
 }
 
-.pip-recommended-header {
-    height: 45px;
-    min-height: 45px;
-    z-index: 10;
+@media (min-width: 769px) {
+    .pip-content-container {
+        max-width: calc(100% - 300px) !important;
+    }
 }
 
-.pip-recommended-header .md-toolbar-tools {
-    height: 45px;
-    min-height: 45px;
+pre {
+    border-radius: 4px;
 }
 
-.pip-recommended-header pip-title {
-    overflow:      hidden;
-    text-overflow: ellipsis;
-    white-space:   nowrap;
+.flat {
+    box-shadow: none !important;
 }
 
-.pip-recommended-header .md-button > span {
-    text-transform: none;
-}
-
-.pip-body {
-    padding: 24px !important;
+.pip-menu {
+    overflow-x: hidden !important;
 }
