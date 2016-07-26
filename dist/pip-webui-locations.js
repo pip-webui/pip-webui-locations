@@ -1,3 +1,25 @@
+/**
+ * @file Registration of location WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipLocations', [        
+        'pipLocation',
+        'pipLocationMap',
+        'pipLocationIp',
+        'pipLocationEdit',
+        'pipLocationEditDialog'
+    ]);
+    
+})();
+
+
+
 (function(module) {
 try {
   module = angular.module('pipLocations.Templates');
@@ -11,15 +33,15 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-location-edit-dialog" layout="column"md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-location-edit-dialog layout-column"md-theme="{{theme}}">\n' +
     '\n' +
-    '    <div class="pip-header" layout="column" layout-align="start start">\n' +
+    '    <div class="pip-header layout-column layout-align-start-start">\n' +
     '        <md-progress-linear ng-show="transaction.busy()" md-mode="indeterminate" class="pip-progress-top">\n' +
     '        </md-progress-linear>\n' +
-    '        <h3 class="m0 w-stretch" flex>{{ \'LOCATION_SET_LOCATION\' | translate }}</h3>\n' +
+    '        <h3 class="m0 w-stretch flex">{{ \'LOCATION_SET_LOCATION\' | translate }}</h3>\n' +
     '    </div>\n' +
     '    <div class="pip-footer">\n' +
-    '        <div layout="row" layout-align="start center">\n' +
+    '        <div class="layout-row layout-align-start-center">\n' +
     '            <md-button class="md-accent" ng-click="onAddPin()" ng-show="locationPos == null"\n' +
     '                ng-disabled="transaction.busy()" aria-label="{{ ::\'LOCATION_ADD_PIN\' | translate }}">\n' +
     '                {{ ::\'LOCATION_ADD_PIN\' | translate }}\n' +
@@ -29,8 +51,8 @@ module.run(['$templateCache', function($templateCache) {
     '                {{ ::\'LOCATION_REMOVE_PIN\' | translate }}\n' +
     '            </md-button>\n' +
     '        </div>\n' +
-    '        <div flex></div>\n' +
-    '        <div layout="row" layout-align="end center">\n' +
+    '        <div class="flex"></div>\n' +
+    '        <div class="layout-row layout-align-end-center">\n' +
     '            <md-button ng-click="onCancel()" aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
     '                {{ ::\'CANCEL\' | translate }}\n' +
     '            </md-button>\n' +
@@ -63,28 +85,6 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
-
-/**
- * @file Registration of location WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipLocations', [        
-        'pipLocation',
-        'pipLocationMap',
-        'pipLocationIp',
-        'pipLocationEdit',
-        'pipLocationEditDialog'
-    ]);
-    
-})();
-
-
 
 /**
  * @file Location control
