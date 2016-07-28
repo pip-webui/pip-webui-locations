@@ -1,37 +1,17 @@
-# Changelog
+# Pip.WebUI.Locations Changelog
 
-### 1.0.0 (2016-05-01)
------
+## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
-#### Enhancements:
+Initial release with location view and edit controls
 
-* **location** Location view control
-* **location edit** Location edit control
-* **location ip** Location IP control
-* **location map** Location map control
-* **location dialog** Location dialog control
+### Features
+* **location**: location view and edit controls
+* **location ip**: location IP control
+* **location map**: location map control
+* **location dialog**: location dialog control
 
-#### Breaking Changes
-* API in most controls was changed since the previous version
+### Breaking Changes
+No breaking changes in this version
 
-#### Bug Fixes
+### Bug Fixes
 No fixes in this version
-
-<br/>
-
-### 0.0.0 (2016-01-01) Template
------
-
-#### Enhancements:
-
-* new performed features
-
-#### Breaking Changes
-* what has been changed
-
-#### Bug Fixes
-
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
