@@ -7,15 +7,11 @@ Position information today is used in Line-of-Business applications today very f
 Pip.WebUI.Locations module provides controls to visualize and edit positions. 
 They are built on the of Google Maps and require registered key to be set by developers.
 
-### Location map
-
 **Location map** is the most basic among all controls. It visualized a point on a small map that can be embedded into a view.
 
 <a href="doc/images/img-location-map.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-location-map.png"/>
 </a>
-
-### Location view
 
 **Location view** shows address or coordinates if address is not available followed by the map with the point.
 The control can be set to make map collapsable to save some space on screen.
@@ -25,23 +21,17 @@ Todo: replace picture with correct screenshot
     <img src="doc/images/img-location-edit-view.png"/>
 </a>
 
-### Location IP
-
 **Location IP** control may look exactly as **Location view**. But instead of position it accepts IP address and uses Google location service to convert it into physical address. This control can be helpful to visualize location of servers or places there users signin into application.
 
 <a href="doc/images/img-location-ip.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-location-ip.png"/>
 </a>
 
-### Location edit
-
 **Location edit** allows to change the location address or coordinates. They can be entered manually or set via **Location dialog**
 
 <a href="doc/images/img-location-edit-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-location-edit-view.png"/>
 </a>
-
-### Location dialog
 
 **Location dialog** allows to set location by manually picking a point on map, or using current location from the device.
 
