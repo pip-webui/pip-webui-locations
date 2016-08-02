@@ -855,8 +855,6 @@ module.run(['$templateCache', function($templateCache) {
 /**
  * @file Location map control
  * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve samples in sampler app
  */
  
 /* global angular, google */
@@ -871,7 +869,9 @@ module.run(['$templateCache', function($templateCache) {
             return {
                 restrict: 'EA',
                 scope: {
-                    pipLocationPos: '&'
+                    pipLocationPos: '&',
+                    pipDraggable: '&',
+                    pipStretch: '&'
                 },
                 template: '<div class="pip-location-container"></div>',
                 controller: 'pipLocationMapController' 
@@ -883,16 +883,18 @@ module.run(['$templateCache', function($templateCache) {
         ['$scope', '$element', '$attrs', '$parse', 'pipUtils', function ($scope, $element, $attrs, $parse, pipUtils) {
             var 
                 $mapContainer = $element.children('.pip-location-container'),
-                $mapControl = null;
+                $mapControl = null,
+                stretchMap = $scope.pipStretch() || false;
     
             function clearMap() {
                 // Remove map control
                 if ($mapControl) $mapControl.remove();
                 $mapControl = null;
-            };
+            }
     
             function generateMap() {
-                var location = $scope.pipLocationPos();
+                var location = $scope.pipLocationPos(),
+                    draggable = $scope.pipDraggable() || false;
                 
                 // Safeguard for bad coordinates
                 if (location == null
@@ -922,7 +924,7 @@ module.run(['$templateCache', function($templateCache) {
                         disableDefaultUI: true,
                         disableDoubleClickZoom: true,
                         scrollwheel: false,
-                        draggable: false
+                        draggable: draggable
                     },
                     map = new google.maps.Map($mapControl[0], mapOptions);
                     
@@ -930,7 +932,7 @@ module.run(['$templateCache', function($templateCache) {
                     position: coordinates,
                     map: map
                 });
-            };
+            }
     
             // Watch for location changes
             if (pipUtils.toBoolean($attrs.pipRebind)) {
@@ -938,7 +940,7 @@ module.run(['$templateCache', function($templateCache) {
                     function () {
                         return $scope.pipLocationPos()
                     },
-                    function (newValue) {
+                    function () {
                         generateMap();
                     }
                 );
@@ -946,6 +948,7 @@ module.run(['$templateCache', function($templateCache) {
     
             // Add class
             $element.addClass('pip-location-map');
+            if (stretchMap) $mapContainer.addClass('stretch');
     
             // Visualize map
             if ($scope.pipLocationPos()) generateMap();
