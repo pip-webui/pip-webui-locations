@@ -1,25 +1,3 @@
-/**
- * @file Registration of location WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipLocations', [        
-        'pipLocation',
-        'pipLocationMap',
-        'pipLocationIp',
-        'pipLocationEdit',
-        'pipLocationEditDialog'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipLocations.Templates');
@@ -85,6 +63,28 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
+
+/**
+ * @file Registration of location WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipLocations', [        
+        'pipLocation',
+        'pipLocationMap',
+        'pipLocationIp',
+        'pipLocationEdit',
+        'pipLocationEditDialog'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Location control
@@ -864,76 +864,104 @@ module.run(['$templateCache', function($templateCache) {
 
     var thisModule = angular.module("pipLocationMap", ['pipUtils']);
 
-    thisModule.directive('pipLocationMap', 
+    thisModule.directive('pipLocationMap',
         function () {
             return {
                 restrict: 'EA',
                 scope: {
                     pipLocationPos: '&',
+                    pipLocationPositions: '&',
                     pipDraggable: '&',
                     pipStretch: '&'
                 },
                 template: '<div class="pip-location-container"></div>',
-                controller: 'pipLocationMapController' 
+                controller: 'pipLocationMapController'
             }
         }
     );
 
     thisModule.controller('pipLocationMapController',
         ['$scope', '$element', '$attrs', '$parse', 'pipUtils', function ($scope, $element, $attrs, $parse, pipUtils) {
-            var 
+            var
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null,
                 stretchMap = $scope.pipStretch() || false;
-    
+
             function clearMap() {
                 // Remove map control
                 if ($mapControl) $mapControl.remove();
                 $mapControl = null;
             }
-    
+
+            function checkLocation (loc) {
+                return !(loc == null
+                || loc.coordinates == null
+                || loc.coordinates.length < 0);
+            }
+
+            function determineCoordinates(loc) {
+                return new google.maps.LatLng(
+                    loc.coordinates[0],
+                    loc.coordinates[1]
+                );
+            }
+
             function generateMap() {
                 var location = $scope.pipLocationPos(),
+                    locations = $scope.pipLocationPositions(),
+                    points = [],
                     draggable = $scope.pipDraggable() || false;
-                
+
                 // Safeguard for bad coordinates
-                if (location == null
-                    || location.coordinates == null
-                    || location.coordinates.length < 0) {
+                if (checkLocation(location)) {
+                    points.push(determineCoordinates(location));
+                } else {
+                    if (locations && locations.length && locations.length > 0) {
+                        locations.forEach(function (loc) {
+                            if (checkLocation(loc)) {
+                                points.push(determineCoordinates(loc));
+                            }
+                        });
+                    }
+                }
+
+                if (points.length === 0) {
                     clearMap();
                     return;
                 }
-    
-                // Determine map coordinates
-                var coordinates = new google.maps.LatLng(
-                    location.coordinates[0],
-                    location.coordinates[1]
-                );
-    
+
                 // Clean up the control
                 if ($mapControl) $mapControl.remove();
                 $mapControl = $('<div></div>');
                 $mapControl.appendTo($mapContainer);
-    
-                // Create the map with point marker
-                var 
+
+                // Create the map
+                var
                     mapOptions = {
-                        center: coordinates,
+                        center: points[0],
                         zoom: 12,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         disableDefaultUI: true,
                         disableDoubleClickZoom: true,
-                        scrollwheel: false,
+                        scrollwheel: draggable,
                         draggable: draggable
                     },
-                    map = new google.maps.Map($mapControl[0], mapOptions);
-                    
-                new google.maps.Marker({
-                    position: coordinates,
-                    map: map
+                    map = new google.maps.Map($mapControl[0], mapOptions),
+                    bounds = new google.maps.LatLngBounds();
+
+                // Create markers
+                points.forEach(function(point) {
+                    new google.maps.Marker({
+                        position: point,
+                        map: map
+                    });
+                    bounds.extend(point);
                 });
+
+                // Auto-config of zoom and center
+                if (points.length > 0) map.fitBounds(bounds);
             }
-    
+
             // Watch for location changes
             if (pipUtils.toBoolean($attrs.pipRebind)) {
                 $scope.$watch(
@@ -945,13 +973,13 @@ module.run(['$templateCache', function($templateCache) {
                     }
                 );
             }
-    
+
             // Add class
             $element.addClass('pip-location-map');
             if (stretchMap) $mapContainer.addClass('stretch');
-    
+
             // Visualize map
-            if ($scope.pipLocationPos()) generateMap();
+            if ($scope.pipLocationPos() || $scope.pipLocationPositions()) generateMap();
             else clearMap();
         }]
     );
