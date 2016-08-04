@@ -51,13 +51,23 @@ angular.module('myApp',[..., 'pipLocations']);
 **pip-location-map** is the most basic among all controls. It visualized a point on a small map that can be embedded into a view.
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-location-map pip-rebind="true"
+                  pip-location-pos="position"
+                  pip-location-positions="positions"
+                  pip-draggable="true"
+                  pip-stretch="true">
+</pip-location-map>
+```
 
 <img src="images/img-location-map.png"/>
 
 ### Attributes
-Todo: Describe directive attributes here
-
+* **pip-rebind** - means that map will be updated after changing position or positions. Possible values: **true** or **false**.
+* **pip-location-pos** - coordinates of position, which create marker on map. Value: { type: 'point', coordinates: {33.444567, -110.54778} }
+* **pip-location-positions** - coordinate array, which create several markers on map.
+* **pip-draggable** - permission to drag map. Possible values: **true** or **false**.
+* **pip-stretch** - map stretches the length and width of the parent block. Possible values: **true** or **false**.
 
 ## <a name="location"></a> pip-location directive
 
@@ -65,52 +75,96 @@ Todo: Describe directive attributes here
 The control can be set to make map collapsable to save some space on screen.
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-location pip-rebind="true"
+              pip-show-location-icon="true" pip-collapse="true"
+              pip-location-name="location_name" pip-location-pos="location">
+</pip-location>
+```
 
 Todo: replace picture with correct screenshot
 <img src="images/img-location-edit-view.png"/>
     
 ### Attributes
-Todo: Describe directive attributes here
-
+* **pip-rebind** - means that map will be updated after changing position. Possible values: **true** or **false**.
+* **pip-location-pos** - coordinates of position, which create marker on map. Value: { type: 'point', coordinates: {33.444567, -110.54778} }
+* **pip-collapse** - sets collapsed control or not. Possible values: **true** or **false**.
+* **pip-show-location-icon** - sets the presence of icon. Possible values: **true** or **false**.
+* **pip-location-name** - place name where the coordinates point
 
 ## <a name="location_ip"></a> pip-location-ip directive
 
 **pip-location-ip** control may look exactly as **pip-location-view**. But instead of position it accepts IP address and uses Google location service to convert it into physical address. This control can be helpful to visualize location of servers or places there users signin into application.
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-location-ip pip-rebind="true"
+                 pip-ipaddress="ipaddress">
+</pip-location-ip>
+```
 
 <img src="images/img-location-ip.png"/>
 
 ### Attributes
-Todo: Describe directive attributes here
-
+* **pip-rebind** - means that map will be updated after changing ip-address. Possible values: **true** or **false**.
+* **pip-ipaddress** - ip-address of location position.
 
 ## <a name="location_edit"></a> pip-location-edit directive
 
 **pip-location-edit** allows to change the location address or coordinates. They can be entered manually or set via **pipLocationDialog**
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-location-edit ng-disabled="locationDisabled"
+                   pip-location-name="location_name"
+                   pip-location-holder="true"
+                   pip-changed="positionChanged()"
+                   pip-location-pos="location">
+</pip-location-edit>
+```
 
 <img src="images/img-location-edit-view.png"/>
 
 ### Attributes
-Todo: Describe directive attributes here
-
+* **ng-disabled** - disabling of control. Possible values: **true** or **false**.
+* **pip-location-pos** - coordinates of position, which create marker on map. Value: { type: 'point', coordinates: {33.444567, -110.54778} }
+* **pip-location-name** - place name where the coordinates point.
+* **pip-location-holder** - set the existence of 'md-no-float' attribute.
+* **pip-changed** - it triggered after position change.
 
 ## <a name="location_dialog"></a> pipLocationDialog
 
-**pipLocationDialog** allows to set location by manually picking a point on map, or using current location from the device.
+**pipLocationEditDialog** allows to set location by manually picking a point on map, or using current location from the device.
 
 ### Usage
-Todo: Add code snippet to show how to open dialog
+```javascript
+$scope.location = {
+    name: '780 W. Lost Creek Place, Tucson, AZ 85737',
+    'type': 'Point',
+    'coordinates': [32.393603, -110.98259300000001]
+};
+
+
+pipLocationEditDialog.show(
+    {
+        locationName: $scope.location.name,
+        locationPos: $scope.location
+    },
+    function (result) {
+        // Callback after dialog close
+        console.log('Selected New Location');
+        console.log(result);
+        if (result)
+            $scope.note.location_pos = result.locationPos;
+    }
+);
+```
 
 <img src="images/img-location-dialog.png"/>
 
 ### Methods
-Todo: Describe dialog methods here
+Todo: finish this
+* **show** - show dialog. Options:
 
 
 ## <a name="issues"></a> Questions and bugs
