@@ -132,7 +132,7 @@ Todo: replace picture with correct screenshot
 * **pip-location-holder** - set the existence of 'md-no-float' attribute.
 * **pip-changed** - it triggered after position change.
 
-## <a name="location_dialog"></a> pipLocationDialog
+## <a name="location_dialog"></a> pipLocationEditDialog
 
 **pipLocationEditDialog** allows to set location by manually picking a point on map, or using current location from the device.
 
@@ -163,9 +163,7 @@ pipLocationEditDialog.show(
 <img src="images/img-location-dialog.png"/>
 
 ### Methods
-Todo: finish this
-* **show** - show dialog. Options:
-
+* **show** - shows dialog. Parameters: *locationName* - place name where the coordinates point, *locationPos* - coordinates of position, which create marker on map.
 
 ## <a name="issues"></a> Questions and bugs
 
