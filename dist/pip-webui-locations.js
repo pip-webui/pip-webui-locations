@@ -1,25 +1,3 @@
-/**
- * @file Registration of location WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipLocations', [        
-        'pipLocation',
-        'pipLocationMap',
-        'pipLocationIp',
-        'pipLocationEdit',
-        'pipLocationEditDialog'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipLocations.Templates');
@@ -85,6 +63,28 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
+
+/**
+ * @file Registration of location WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipLocations', [        
+        'pipLocation',
+        'pipLocationMap',
+        'pipLocationIp',
+        'pipLocationEdit',
+        'pipLocationEditDialog'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Location control
@@ -871,6 +871,7 @@ module.run(['$templateCache', function($templateCache) {
                 scope: {
                     pipLocationPos: '&',
                     pipLocationPositions: '&',
+                    pipIconPath: '&',
                     pipDraggable: '&',
                     pipStretch: '&'
                 },
@@ -885,7 +886,8 @@ module.run(['$templateCache', function($templateCache) {
             var
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null,
-                stretchMap = $scope.pipStretch() || false;
+                stretchMap = $scope.pipStretch() || false,
+                iconPath = $scope.pipIconPath();
 
             function clearMap() {
                 // Remove map control
@@ -900,10 +902,15 @@ module.run(['$templateCache', function($templateCache) {
             }
 
             function determineCoordinates(loc) {
-                return new google.maps.LatLng(
+                var point = new google.maps.LatLng(
                     loc.coordinates[0],
                     loc.coordinates[1]
                 );
+
+                point.fill = loc.fill;
+                point.stroke = loc.stroke;
+
+                return point;
             }
 
             function generateMap() {
@@ -951,15 +958,25 @@ module.run(['$templateCache', function($templateCache) {
 
                 // Create markers
                 points.forEach(function(point) {
+                    var icon = {
+                        path: iconPath,
+                        fillColor: point.fill || '#EF5350',
+                        fillOpacity: 1,
+                        scale: 1,
+                        strokeColor: point.stroke || 'white',
+                        strokeWeight: 5
+                    };
+
                     new google.maps.Marker({
                         position: point,
-                        map: map
+                        map: map,
+                        icon: iconPath ? icon : null
                     });
                     bounds.extend(point);
                 });
 
                 // Auto-config of zoom and center
-                if (points.length > 0) map.fitBounds(bounds);
+                if (points.length > 1) map.fitBounds(bounds);
             }
 
             // Watch for location changes

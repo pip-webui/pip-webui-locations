@@ -17,6 +17,7 @@
                 scope: {
                     pipLocationPos: '&',
                     pipLocationPositions: '&',
+                    pipIconPath: '&',
                     pipDraggable: '&',
                     pipStretch: '&'
                 },
@@ -27,11 +28,12 @@
     );
 
     thisModule.controller('pipLocationMapController',
-        function ($scope, $element, $attrs, $parse, pipUtils) {
+        ['$scope', '$element', '$attrs', '$parse', 'pipUtils', function ($scope, $element, $attrs, $parse, pipUtils) {
             var
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null,
-                stretchMap = $scope.pipStretch() || false;
+                stretchMap = $scope.pipStretch() || false,
+                iconPath = $scope.pipIconPath();
 
             function clearMap() {
                 // Remove map control
@@ -46,10 +48,15 @@
             }
 
             function determineCoordinates(loc) {
-                return new google.maps.LatLng(
+                var point = new google.maps.LatLng(
                     loc.coordinates[0],
                     loc.coordinates[1]
                 );
+
+                point.fill = loc.fill;
+                point.stroke = loc.stroke;
+
+                return point;
             }
 
             function generateMap() {
@@ -97,9 +104,19 @@
 
                 // Create markers
                 points.forEach(function(point) {
+                    var icon = {
+                        path: iconPath,
+                        fillColor: point.fill || '#EF5350',
+                        fillOpacity: 1,
+                        scale: 1,
+                        strokeColor: point.stroke || 'white',
+                        strokeWeight: 5
+                    };
+
                     new google.maps.Marker({
                         position: point,
-                        map: map
+                        map: map,
+                        icon: iconPath ? icon : null
                     });
                     bounds.extend(point);
                 });
@@ -127,7 +144,7 @@
             // Visualize map
             if ($scope.pipLocationPos() || $scope.pipLocationPositions()) generateMap();
             else clearMap();
-        }
+        }]
     );
 
 })();
