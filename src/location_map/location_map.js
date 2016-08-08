@@ -105,7 +105,7 @@
                 });
 
                 // Auto-config of zoom and center
-                if (points.length > 0) map.fitBounds(bounds);
+                if (points.length > 1) map.fitBounds(bounds);
             }
 
             // Watch for location changes
