@@ -9,44 +9,44 @@ They are built on the of Google Maps and require registered key to be set by dev
 
 **Location map** is the most basic among all controls. It visualized a point on a small map that can be embedded into a view.
 
-<a href="doc/images/img-location-map.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-location-map.png"/>
+<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-map.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-map.png"/>
 </a>
 
 **Location view** shows address or coordinates if address is not available followed by the map with the point.
 The control can be set to make map collapsable to save some space on screen.
 
 Todo: replace picture with correct screenshot
-<a href="doc/images/img-location-edit-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-location-edit-view.png"/>
+<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-edit-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-edit-view.png"/>
 </a>
 
 **Location IP** control may look exactly as **Location view**. But instead of position it accepts IP address and uses Google location service to convert it into physical address. This control can be helpful to visualize location of servers or places there users signin into application.
 
-<a href="doc/images/img-location-ip.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-location-ip.png"/>
+<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-ip.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-ip.png"/>
 </a>
 
 **Location edit** allows to change the location address or coordinates. They can be entered manually or set via **Location dialog**
 
-<a href="doc/images/img-location-edit-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-location-edit-view.png"/>
+<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-edit-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-edit-view.png"/>
 </a>
 
 **Location dialog** allows to set location by manually picking a point on map, or using current location from the device.
 
-<a href="doc/images/img-location-dialog.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-location-dialog.png"/>
+<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-dialog.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-dialog.png"/>
 </a>
 
 
 ## Learn more about the module
 
-- [User's guide](doc/UsersGuide.md)
+- [User's guide](https://github.com/pip-webui/pip-webui-locations/blob/master/doc/UsersGuide.md)
 - [Online samples](http://webui.pipdevs.com/pip-webui-locations/index.html)
 - [API reference](http://webui-api.pipdevs.com/pip-webui-locations/index.html)
-- [Developer's guide](doc/DevelopersGuide.md)
-- [Changelog](CHANGELOG.md)
+- [Developer's guide](https://github.com/pip-webui/pip-webui-locations/blob/master/doc/DevelopersGuide.md)
+- [Changelog](https://github.com/pip-webui/pip-webui-locations/blob/master/CHANGELOG.md)
 - [Pip.WebUI project website](http://www.pipwebui.org)
 - [Pip.WebUI project wiki](https://github.com/pip-webui/pip-webui/wiki)
 - [Pip.WebUI discussion forum](https://groups.google.com/forum/#!forum/pip-webui)
