@@ -68,7 +68,7 @@
 
             var map = null, marker = null;
 
-            var createMarker = function(coordinates) {
+            function createMarker (coordinates) {
                 if (marker) marker.setMap(null);
                 
                 if (coordinates) {
@@ -82,7 +82,7 @@
                     var thisMarker = marker;
                     google.maps.event.addListener(thisMarker, 'dragend', function() {
                        var coordinates = thisMarker.getPosition(); 
-                       changeLocation(coordinates);
+                       changeLocation(coordinates, null);
                     });
                 } else {
                     marker = null;
@@ -91,7 +91,7 @@
                 return marker;
             };
 
-            var changeLocation = function(coordinates, tid) {
+            function changeLocation(coordinates, tid) {
                 $scope.locationPos = {
                     type: 'Point',
                     coordinates: [coordinates.lat(), coordinates.lng()]
@@ -161,7 +161,7 @@
 
                 var coordinates = map.getCenter();
                 marker = createMarker(coordinates);
-                changeLocation(coordinates);
+                changeLocation(coordinates, null);
             };
 
             $scope.onRemovePin = function () {

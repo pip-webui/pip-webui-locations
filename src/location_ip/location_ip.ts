@@ -7,10 +7,12 @@
  
 /* global angular, google */
 
+declare let google: any;
+
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipLocationIp", ['pipUtils']);
+    var thisModule = angular.module("pipLocationIp", []);
 
     thisModule.directive('pipLocationIp',
         function () {
@@ -27,7 +29,7 @@
     );
 
     thisModule.controller('pipLocationIpController',
-        function ($scope, $element, $attrs, $http, pipUtils) {
+        function ($scope, $element, $attrs, $http) {
             var 
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null;
@@ -36,7 +38,7 @@
                 // Remove map control
                 if ($mapControl) $mapControl.remove();
                 $mapControl = null;
-            };
+            }
 
             function generateMap(latitude, longitude) {
                 // Safeguard for bad coordinates
@@ -73,7 +75,14 @@
                     position: coordinates,
                     map: map
                 });
-            };
+            }
+
+            function toBoolean(value) {
+                if (value == null) return false;
+                if (!value) return false;
+                value = value.toString().toLowerCase();
+                return value == '1' || value == 'true';
+            }
 
             function defineCoordinates() {
                 var ipAddress = $scope.pipIpaddress();
@@ -84,7 +93,7 @@
                 }
 
                 // Todo: Find more reliable geocoding service to locate ip addresses
-                $http.jsonp('http://www.geoplugin.net/json.gp?ip=' + ipAddress + '&jsoncallback=JSON_CALLBACK')
+                $http.jsonp('https://www.geoplugin.net/json.gp?ip=' + ipAddress + '&jsoncallback=JSON_CALLBACK')
                 .success(function (response) {
                     if (response != null 
                         && response.geoplugin_latitude != null
@@ -112,10 +121,10 @@
                     console.error(response);
                     clearMap();
                 });
-            };
+            }
 
             // Watch for location changes
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
+            if (toBoolean($attrs.pipRebind)) {
                 $scope.$watch(
                     function () {
                         return $scope.pipIpaddress()

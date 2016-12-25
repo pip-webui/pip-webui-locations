@@ -8,7 +8,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipLocationMap", ['pipUtils']);
+    var thisModule = angular.module("pipLocationMap", []);
 
     thisModule.directive('pipLocationMap',
         function () {
@@ -28,7 +28,7 @@
     );
 
     thisModule.controller('pipLocationMapController',
-        ['$scope', '$element', '$attrs', '$parse', 'pipUtils', function ($scope, $element, $attrs, $parse, pipUtils) {
+        ['$scope', '$element', '$attrs', '$parse', function ($scope, $element, $attrs, $parse) {
             var
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null,
@@ -57,6 +57,13 @@
                 point.stroke = loc.stroke;
 
                 return point;
+            }
+
+            function toBoolean(value) {
+                if (value == null) return false;
+                if (!value) return false;
+                value = value.toString().toLowerCase();
+                return value == '1' || value == 'true';
             }
 
             function generateMap() {
@@ -126,7 +133,7 @@
             }
 
             // Watch for location changes
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
+            if (toBoolean($attrs.pipRebind)) {
                 $scope.$watch(
                     function () {
                         return $scope.pipLocationPos()

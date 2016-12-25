@@ -10,10 +10,10 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipLocation", ['pipUtils']);
+    var thisModule = angular.module("pipLocation", []);
 
     thisModule.directive('pipLocation', 
-        function (pipUtils) {
+        function () {
             return {
                 restrict: 'EA',
                 scope: {
@@ -23,8 +23,15 @@
                     pipShowLocationIcon: '='
                 },
                 template: 
-                    function($element, $attrs) {
-                        if (pipUtils.toBoolean($attrs.pipCollapse)) {
+                    function($element, $attrs: any) {
+                        function toBoolean(value) {
+                            if (value == null) return false;
+                            if (!value) return false;
+                            value = value.toString().toLowerCase();
+                            return value == '1' || value == 'true';
+                        }
+
+                        if (toBoolean($attrs.pipCollapse)) {
                             return String()
                                 + '<div class="pip-location-name bm0" ng-click="pipLocationResize()" ng-hide="!pipLocationName()"'
                                 + 'ng-class="pipShowLocationIcon ? \'lp24-flex rp16\' : \'\'">'
@@ -52,14 +59,21 @@
     );
 
     thisModule.controller('pipLocationController',
-        function ($scope, $element, $attrs, pipUtils) {
+        function ($scope, $element, $attrs) {
+            function toBoolean(value) {
+                if (value == null) return false;
+                if (!value) return false;
+                value = value.toString().toLowerCase();
+                return value == '1' || value == 'true';
+            }
+
             var 
                 $name = $element.children('.pip-location-name'),
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null,
                 $up = $element.find('.icon-up'),
                 $down = $element.find('.icon-down'),
-                collapsable = pipUtils.toBoolean($attrs.pipCollapse);
+                collapsable = toBoolean($attrs.pipCollapse);
 
             function clearMap() {
                 // Remove map control
@@ -127,7 +141,7 @@
             }
 
             // Watch for location changes
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
+            if (toBoolean($attrs.pipRebind)) {
                 $scope.$watch($scope.pipLocationPos,
                     function (newValue) {
                         generateMap();

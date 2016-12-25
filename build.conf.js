@@ -1,37 +1,24 @@
 module.exports = {
     module: {
         name: 'pipLocations',
-        styles: 'locations'
+        styles: 'locations',
+        export: 'pip.locations',
+        standalone: 'pip.locations'
     },
     build: {
-        js: true,
-        ts: true,
+        js: false,
+        ts: false,
+        tsd: true,
+        bundle: true,
         html: true,
-        css: true,
+        less: true,
         lib: true,
         images: true,
         dist: false
     },
     file: {
         lib: [
-            '../pip-webui-test/dist/**/*',
             '../pip-webui-lib/dist/**/*',
-            '../pip-webui-css/dist/**/*',
-            '../pip-webui-core/dist/**/*',
-            '../pip-webui-rest/dist/**/*',
-            '../pip-webui-controls/dist/**/*',
-            '../pip-webui-nav/dist/**/*',
-            '../pip-webui-layouts/dist/**/*',
-            // '../pip-webui-pictures/dist/**/*',
-            // '../pip-webui-locations/dist/**/*',
-            // '../pip-webui-documents/dist/**/*',
-            // '../pip-webui-composite/dist/**/*',
-            // '../pip-webui-errors/dist/**/*',
-            // '../pip-webui-entry/dist/**/*',
-            // '../pip-webui-settings/dist/**/*',
-            // '../pip-webui-guidance/dist/**/*',
-            // '../pip-webui-support/dist/**/*',
-            // '../pip-webui-help/dist/**/*'
         ]
     },
     samples: {

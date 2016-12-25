@@ -38,14 +38,14 @@
                 controller: function ($scope, $element) {
                     $element.find('md-input-container').attr('md-no-float', !!$scope.pipLocationHolder);
                 },
-                link: function ($scope, $element) {
+                link: function ($scope: any, $element) {
 
                     var 
                         $empty = $element.children('.pip-location-empty'),
                         $mapContainer = $element.children('.pip-location-container'),
                         $mapControl = null;
 
-                    var clearMap = function () {
+                    function clearMap() {
                         // Remove map control
                         if ($mapControl) $mapControl.remove();
                         $mapControl = null;
@@ -55,7 +55,7 @@
                         $empty.show();
                     };
 
-                    var generateMap = function () {
+                    function generateMap() {
                         // Safeguard for bad coordinates
                         var location = $scope.pipLocationPos;
                         if (location == null || location.coordinates == null || location.coordinates.length < 0) {
@@ -97,7 +97,7 @@
                         });
                     };
 
-                    var defineCoordinates = function () {
+                    function defineCoordinates() {
                         var locationName = $scope.pipLocationName;
 
                         if (locationName == '') {
@@ -146,7 +146,6 @@
                                 } 
                                 // Process error...
                                 else {
-                                    console.error(response);
                                     $scope.pipLocationPos = null;
                                     //clearMap();                                
                                 }
