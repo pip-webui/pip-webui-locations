@@ -12,8 +12,9 @@
         'pipLocation',
         'pipLocationMap',
         'pipLocationIp',
+        'pipLocationEditDialog',
         'pipLocationEdit',
-        'pipLocationEditDialog'
+        'pipLocations.Translate'
     ]);
     
 })();

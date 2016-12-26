@@ -11,22 +11,22 @@
     'use strict';
 
     var thisModule = angular.module('pipLocationEditDialog', 
-        ['ngMaterial', 'pipTranslate', 'pipTransactions', 'pipLocations.Templates']);
+        ['ngMaterial',  'pipLocations.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'LOCATION_ADD_LOCATION': 'Add location',
-            'LOCATION_SET_LOCATION': 'Set location',
-            'LOCATION_ADD_PIN': 'Add pin',
-            'LOCATION_REMOVE_PIN': 'Remove pin'
-        });
-        pipTranslateProvider.translations('ru', {
-            'LOCATION_ADD_LOCATION': 'Добавить местоположение',
-            'LOCATION_SET_LOCATION': 'Определить положение',
-            'LOCATION_ADD_PIN': 'Добавить точку',
-            'LOCATION_REMOVE_PIN': 'Убрать точку'
-        });
-    });
+    // thisModule.config(function(pipTranslateProvider) {
+    //     pipTranslateProvider.translations('en', {
+    //         'LOCATION_ADD_LOCATION': 'Add location',
+    //         'LOCATION_SET_LOCATION': 'Set location',
+    //         'LOCATION_ADD_PIN': 'Add pin',
+    //         'LOCATION_REMOVE_PIN': 'Remove pin'
+    //     });
+    //     pipTranslateProvider.translations('ru', {
+    //         'LOCATION_ADD_LOCATION': 'Добавить местоположение',
+    //         'LOCATION_SET_LOCATION': 'Определить положение',
+    //         'LOCATION_ADD_PIN': 'Добавить точку',
+    //         'LOCATION_REMOVE_PIN': 'Убрать точку'
+    //     });
+    // });
 
     thisModule.factory('pipLocationEditDialog',
         function ($mdDialog) {
@@ -56,7 +56,9 @@
     );
 
     thisModule.controller('pipLocationEditDialogController', 
-        function ($scope, $rootScope, $timeout, $mdDialog, pipTransaction, locationPos, locationName) {
+        function ($scope, $rootScope, $timeout, $mdDialog,  locationPos, locationName) {
+
+            console.log('pipLocationEditDialogController');
             $scope.theme = $rootScope.$theme;
             $scope.locationPos = locationPos && locationPos.type == 'Point'
                 && locationPos.coordinates && locationPos.coordinates.length == 2
@@ -64,7 +66,7 @@
             $scope.locationName = locationName;
             $scope.supportSet = navigator.geolocation != null;
 
-            $scope.transaction = pipTransaction('location_edit_dialog', $scope);
+            // $scope.transaction = pipTransaction('location_edit_dialog', $scope);
 
             var map = null, marker = null;
 
@@ -99,14 +101,14 @@
                 $scope.locationName = null;
 
                 if (tid == null) {
-                    tid = $scope.transaction.begin();
+                    // tid = $scope.transaction.begin();
                     if (tid == null) return;
                 }
 
                 // Read address
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ location: coordinates }, function(results, status) {
-                    if ($scope.transaction.aborted(tid)) return;
+                    // if ($scope.transaction.aborted(tid)) return;
 
                     // Process positive response
                     if (status == google.maps.GeocoderStatus.OK
@@ -114,7 +116,7 @@
                         $scope.locationName = results[0].formatted_address;
                     }
 
-                    $scope.transaction.end();
+                    // $scope.transaction.end();
                     $scope.$apply();
                 });
             };
@@ -186,12 +188,12 @@
             $scope.onSetLocation = function () {
                 if (map == null) return;
 
-                var tid = $scope.transaction.begin();
-                if (tid == null) return;
+                // var tid = $scope.transaction.begin();
+                // if (tid == null) return;
 
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
-                        if ($scope.transaction.aborted(tid)) return;
+                        // if ($scope.transaction.aborted(tid)) return;
 
                         var coordinates = new google.maps.LatLng(
                             position.coords.latitude, position.coords.longitude);
@@ -200,10 +202,10 @@
                         map.setCenter(coordinates);
                         map.setZoom(12);
 
-                        changeLocation(coordinates, tid);
+                        // changeLocation(coordinates, tid);
                     },
                     function () {
-                        $scope.transaction.end();
+                        // $scope.transaction.end();
                         $scope.$apply();
                     },
                     {

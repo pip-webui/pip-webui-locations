@@ -5,18 +5,13 @@
     var thisModule = angular.module('appLocations.Location', []);
 
     thisModule.controller('LocationController',
-        function ($scope, pipAppBar, $timeout) {
-
+        function ($scope, $timeout) {
+console.log('LocationController');
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);
                 });
             });
-
-            pipAppBar.hideShadow();
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('LOCATION_CONTROLS');
 
             $scope.note = {
                 location_name: '780 W. Lost Creek Place, Tucson, AZ 85737',

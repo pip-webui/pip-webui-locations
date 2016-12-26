@@ -60,6 +60,7 @@
 
     thisModule.controller('pipLocationController',
         function ($scope, $element, $attrs) {
+            console.log('pipLocationController');
             function toBoolean(value) {
                 if (value == null) return false;
                 if (!value) return false;

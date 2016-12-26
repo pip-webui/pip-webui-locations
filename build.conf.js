@@ -18,11 +18,15 @@ module.exports = {
     },
     file: {
         lib: [
-            '../pip-webui-lib/dist/**/*',
+            '../pip-webui-lib/dist/**/*',            
+            // '../pip-webui-test/dist/**/*',
+            '../pip-webui-services/dist/**/*',
+            '../pip-webui-themes/dist/**/*'
         ]
     },
     samples: {
-        port: 8090
+        port: 8090,
+        // https: false
     },
     api: {
         port: 8091

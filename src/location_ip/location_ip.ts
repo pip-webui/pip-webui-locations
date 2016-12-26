@@ -30,6 +30,7 @@ declare let google: any;
 
     thisModule.controller('pipLocationIpController',
         function ($scope, $element, $attrs, $http) {
+            console.log('pipLocationIpController');
             var 
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null;

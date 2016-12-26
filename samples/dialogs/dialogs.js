@@ -3,28 +3,23 @@
 
     var thisModule = angular.module('appLocations.Dialogs', []);
 
-    thisModule.config(function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            OPEN_LOCATION: 'Open location edit dialog'
-        });
-        pipTranslateProvider.translations('ru', {
-            OPEN_LOCATION: 'Открыть диалог изменения местонахождения'
-        });
-    });
+    // thisModule.config(function (pipTranslateProvider) {
+    //     pipTranslateProvider.translations('en', {
+    //         OPEN_LOCATION: 'Open location edit dialog'
+    //     });
+    //     pipTranslateProvider.translations('ru', {
+    //         OPEN_LOCATION: 'Открыть диалог изменения местонахождения'
+    //     });
+    // });
 
     thisModule.controller('DialogsController',
-        function ($scope, pipLocationEditDialog, pipAppBar, $timeout) {
-
+        function ($scope, pipLocationEditDialog, $timeout) {
+console.log('DialogsController');
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);
                 });
             });
-            
-            pipAppBar.hideShadow();
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('LOCATION_CONTROLS');
             
             $scope.note = {
                 location_name: '780 W. Lost Creek Place, Tucson, AZ 85737',

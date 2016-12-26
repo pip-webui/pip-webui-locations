@@ -8,44 +8,44 @@
     <div class="pip-header layout-column layout-align-start-start">
         <md-progress-linear ng-show="transaction.busy()" md-mode="indeterminate" class="pip-progress-top">
         </md-progress-linear>
-        <h3 class="m0 w-stretch flex">{{ 'LOCATION_SET_LOCATION' | translate }}</h3>
+        <h3 class="m0 w-stretch flex">{{ 'LOCATION_SET_LOCATION' }}</h3>
     </div>
     <div class="pip-footer">
         <div class="layout-row layout-align-start-center">
             <md-button class="md-accent" ng-click="onAddPin()" ng-show="locationPos == null"
-                ng-disabled="transaction.busy()" aria-label="{{ ::'LOCATION_ADD_PIN' | translate }}">
-                {{ ::'LOCATION_ADD_PIN' | translate }}
+                ng-disabled="transaction.busy()" aria-label="{{ ::'LOCATION_ADD_PIN'  }}">
+                {{ ::'LOCATION_ADD_PIN'  }}
             </md-button>
             <md-button class="md-accent" ng-click="onRemovePin()" ng-show="locationPos != null"
-                ng-disabled="transaction.busy()" aria-label="{{ ::'LOCATION_REMOVE_PIN' | translate }}">
-                {{ ::'LOCATION_REMOVE_PIN' | translate }}
+                ng-disabled="transaction.busy()" aria-label="{{ ::'LOCATION_REMOVE_PIN'  }}">
+                {{ ::'LOCATION_REMOVE_PIN'  }}
             </md-button>
         </div>
         <div class="flex"></div>
         <div class="layout-row layout-align-end-center">
-            <md-button ng-click="onCancel()" aria-label="{{ ::'CANCEL' | translate }}">
-                {{ ::'CANCEL' | translate }}
+            <md-button ng-click="onCancel()" aria-label="{{ ::'CANCEL'  }}">
+                {{ ::'CANCEL'  }}
             </md-button>
             <md-button class="md-accent" ng-click="onApply()" ng-disabled="transaction.busy()"
-                aria-label="{{ ::'APPLY' | translate }}">
-                {{ ::'APPLY' | translate }}
+                aria-label="{{ ::'APPLY'  }}">
+                {{ ::'APPLY'  }}
             </md-button>
         </div>
     </div>
     <div class="pip-body">
         <div class="pip-location-container"></div>
         <md-button class="md-icon-button md-fab pip-zoom-in" ng-click="onZoomIn()"
-                   aria-label="{{ ::'LOCATION_ZOOM_IN' | translate }}">
+                   aria-label="{{ ::'LOCATION_ZOOM_IN'  }}">
             <!--span class="icon-plus"></span-->
             <md-icon md-svg-icon="icons:plus"></md-icon>
         </md-button>
         <md-button class="md-icon-button md-fab pip-zoom-out" ng-click="onZoomOut()"
-                   aria-label="{{ ::'LOCATION_ZOOM_OUT' | translate }}">
+                   aria-label="{{ ::'LOCATION_ZOOM_OUT'  }}">
             <!--span class="icon-minus"></span-->
             <md-icon md-svg-icon="icons:minus"></md-icon>
         </md-button>
         <md-button class="md-icon-button md-fab pip-set-location" ng-click="onSetLocation()"
-                   aria-label="{{ ::'LOCATION_SET_LOCATION' | translate }}"
+                   aria-label="{{ ::'LOCATION_SET_LOCATION'  }}"
                    ng-show="supportSet" ng-disabled="transaction.busy()">
             <!--span class="icon-target"></span-->
             <md-icon md-svg-icon="icons:target"></md-icon>
