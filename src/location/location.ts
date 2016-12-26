@@ -33,24 +33,24 @@
 
                         if (toBoolean($attrs.pipCollapse)) {
                             return String()
-                                + '<div class="pip-location-name bm0" ng-click="pipLocationResize()" ng-hide="!pipLocationName()"'
-                                + 'ng-class="pipShowLocationIcon ? \'lp24-flex rp16\' : \'\'">'
+                                + '<div class="pip-location-name location-collapse" ng-click="pipLocationResize()" ng-hide="!pipLocationName()"'
+                                + 'ng-class="pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'">'
                                 + '<md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="pipShowLocationIcon"></md-icon>'
                                 + '<span class="pip-location-text">{{pipLocationName()}}</span> '
                                 + '</div>'
-                                + '<div class="pip-location-container bm8" ng-hide="!pipLocationPos()"></div>';
+                                + '<div class="pip-location-container" ng-hide="!pipLocationPos()"></div>';
                         } else {
                             return String()
                                 + '<md-button class="pip-location-name" ng-click="pipLocationResize()" '
-                                + 'ng-class="pipShowLocationIcon ? \'lp24-flex rp16\' : \'\'">'
+                                + 'ng-class="pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'">'
                                 + '<div class="layout-align-start-center layout-row w-stretch">'
                                 + '<md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="pipShowLocationIcon"></md-icon>'
                                 + '<span class="pip-location-text flex">{{pipLocationName()}}</span>'
                                 + '<md-icon md-svg-icon="icons:triangle-down" class="flex-fixed" ng-if="!showMap"></md-icon>'
                                 + '<md-icon md-svg-icon="icons:triangle-up" class="flex-fixed" ng-if="showMap"></md-icon>'
                                 + '</div></md-button>'
-                                + '<div class="pip-location-container bm8"'
-                                + 'ng-class="pipShowLocationIcon ? \'lm24-flex rm24-flex\' : \'\'"></div>';
+                                + '<div class="pip-location-container"'
+                                + 'ng-class="pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'"></div>';
                         }
                     },
                 controller: 'pipLocationController'
@@ -60,7 +60,7 @@
 
     thisModule.controller('pipLocationController',
         function ($scope, $element, $attrs) {
-            console.log('pipLocationController');
+
             function toBoolean(value) {
                 if (value == null) return false;
                 if (!value) return false;

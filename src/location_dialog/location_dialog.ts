@@ -13,21 +13,25 @@
     var thisModule = angular.module('pipLocationEditDialog', 
         ['ngMaterial',  'pipLocations.Templates']);
 
-    // thisModule.config(function(pipTranslateProvider) {
-    //     pipTranslateProvider.translations('en', {
-    //         'LOCATION_ADD_LOCATION': 'Add location',
-    //         'LOCATION_SET_LOCATION': 'Set location',
-    //         'LOCATION_ADD_PIN': 'Add pin',
-    //         'LOCATION_REMOVE_PIN': 'Remove pin'
-    //     });
-    //     pipTranslateProvider.translations('ru', {
-    //         'LOCATION_ADD_LOCATION': 'Добавить местоположение',
-    //         'LOCATION_SET_LOCATION': 'Определить положение',
-    //         'LOCATION_ADD_PIN': 'Добавить точку',
-    //         'LOCATION_REMOVE_PIN': 'Убрать точку'
-    //     });
-    // });
+    thisModule.run(function ($injector) {
+        var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
+        if (pipTranslate) {
+            pipTranslate.setTranslations('en', {
+                'LOCATION_ADD_LOCATION': 'Add location',
+                'LOCATION_SET_LOCATION': 'Set location',
+                'LOCATION_ADD_PIN': 'Add pin',
+                'LOCATION_REMOVE_PIN': 'Remove pin'
+            });
+            pipTranslate.setTranslations('ru', {
+                'LOCATION_ADD_LOCATION': 'Добавить местоположение',
+                'LOCATION_SET_LOCATION': 'Определить положение',
+                'LOCATION_ADD_PIN': 'Добавить точку',
+                'LOCATION_REMOVE_PIN': 'Убрать точку'
+            });
+        }
+    });
+    
     thisModule.factory('pipLocationEditDialog',
         function ($mdDialog) {
             return {
@@ -58,7 +62,6 @@
     thisModule.controller('pipLocationEditDialogController', 
         function ($scope, $rootScope, $timeout, $mdDialog,  locationPos, locationName) {
 
-            console.log('pipLocationEditDialogController');
             $scope.theme = $rootScope.$theme;
             $scope.locationPos = locationPos && locationPos.type == 'Point'
                 && locationPos.coordinates && locationPos.coordinates.length == 2

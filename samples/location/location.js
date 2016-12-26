@@ -5,8 +5,27 @@
     var thisModule = angular.module('appLocations.Location', []);
 
     thisModule.controller('LocationController',
-        function ($scope, $timeout) {
-console.log('LocationController');
+        function ($scope, $timeout, $injector) {
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            if (pipTranslate) {
+                pipTranslate.setTranslations('en', {
+                    OPEN_LOCATION: 'Open location edit dialog',
+                    CODE: 'Code',
+                    DIALOG: 'Dialog',
+                    LOCATION: 'Location',
+                    SAMPLES: 'SAMPLES'
+                });
+                pipTranslate.setTranslations('ru', {
+                    OPEN_LOCATION: 'Открыть диалог изменения местонахождения',
+                    CODE: 'Пример кода',
+                    DIALOG: 'Диалог',
+                    LOCATION: 'Местонахождение',
+                    SAMPLE: 'Пример'
+                });
+            }
+
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);

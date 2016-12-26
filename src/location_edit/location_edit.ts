@@ -25,13 +25,13 @@
                 },
                 template: String()
                     + '<md-input-container class="md-block">'
-                    + '<label>{{ \'LOCATION\'  }}</label>'
+                    + '<label>{{ \'LOCATION\' | translate }}</label>'
                     + '<input ng-model="pipLocationName"'
                     + 'ng-disabled="ngDisabled()"/></md-input-container>'
                     + '<div class="pip-location-empty" layout="column" layout-align="center center">'
                     + '<md-button class="md-raised" ng-disabled="ngDisabled()" ng-click="onSetLocation()"'
                     + 'aria-label="LOCATION_ADD_LOCATION">'
-                    + '<span class="icon-location"></span> {{::\'LOCATION_ADD_LOCATION\' }}'
+                    + '<span class="icon-location"></span> {{::\'LOCATION_ADD_LOCATION\' | translate }}'
                     + '</md-button></div>'
                     + '<div class="pip-location-container" tabindex="{{ ngDisabled() ? -1 : 0 }}"'
                     + ' ng-click="onMapClick($event)" ng-keypress=""onMapKeyPress($event)"></div>',
@@ -39,7 +39,7 @@
                     $element.find('md-input-container').attr('md-no-float', !!$scope.pipLocationHolder);
                 },
                 link: function ($scope: any, $element) {
-console.log('pipLocationEdit');
+
                     var 
                         $empty = $element.children('.pip-location-empty'),
                         $mapContainer = $element.children('.pip-location-container'),

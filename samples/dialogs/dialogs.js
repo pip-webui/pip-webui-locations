@@ -3,18 +3,25 @@
 
     var thisModule = angular.module('appLocations.Dialogs', []);
 
-    // thisModule.config(function (pipTranslateProvider) {
-    //     pipTranslateProvider.translations('en', {
-    //         OPEN_LOCATION: 'Open location edit dialog'
-    //     });
-    //     pipTranslateProvider.translations('ru', {
-    //         OPEN_LOCATION: 'Открыть диалог изменения местонахождения'
-    //     });
-    // });
-
     thisModule.controller('DialogsController',
-        function ($scope, pipLocationEditDialog, $timeout) {
-console.log('DialogsController');
+        function ($scope, pipLocationEditDialog, $timeout, $injector) {
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            if (pipTranslate) {
+                pipTranslate.setTranslations('en', {
+                    OPEN_LOCATION: 'Open location edit dialog',
+                    CODE: 'Code',
+                    DIALOG: 'Dialog',
+                    LOCATION: 'Location'
+                });
+                pipTranslate.setTranslations('ru', {
+                    OPEN_LOCATION: 'Открыть диалог изменения местонахождения',
+                    CODE: 'Пример кода',
+                    DIALOG: 'Диалог',
+                    LOCATION: 'Местонахождение'                    
+                });
+            }
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);

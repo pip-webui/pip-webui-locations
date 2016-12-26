@@ -11,17 +11,19 @@
     <link rel="stylesheet" href="../lib/pip-webui-lib.css"/>
     <link rel="stylesheet" href="../lib/pip-webui-themes.css"/>        
     <link rel="stylesheet" href="../dist/pip-webui-locations.css"/>
+    <link rel="stylesheet" href="../lib/pip-webui-layouts.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.css"/>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
 
     <link rel="stylesheet" href="styles.css"/>
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBg6cm-FDBFPWzRcn39AuSHGQSrdtVIjEo"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBg6cm-FDBFPWzRcn39AuSHGQSrdtVIjEo"></script>
     <script src="https://www.google.com/jsapi"></script>
     <script src="../lib/pip-webui-lib.js"></script>
     <script src="../lib/pip-webui-services.js"></script>
     <script src="../lib/pip-webui-themes.js"></script>
+    <script src="../lib/pip-webui-layouts.js"></script>
     <script src="../dist/pip-webui-locations.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
@@ -31,7 +33,7 @@
     <script src="dialogs/dialogs.js"></script>
 </head>
 
-<body ng-app="appControls" ng-if="!$reset" ng-controller="pipSampleController" class="pip-main layout-column ">
+<body ng-app="appControls" ng-if="!$reset" ng-controller="pipSampleController" class="pip-main layout-column {{$theme}}" md-theme="{{$theme}}">
 <md-toolbar>
     <div class="layout-row layout-align-start-center">
         <md-button class="md-icon-button" aria-label="MENU" ng-if="!$mdMedia('gt-sm')" ng-click="onToggleMenu()">

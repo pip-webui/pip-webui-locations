@@ -47,7 +47,34 @@
     .flex-var();
     .text-overflow();
   }
+
+  .pip-location-icon-space {
+    padding-left: 24px !important;  
+    padding-top: 16 px !important;
+    @media (max-width: 1200px) {
+      padding-left: 16px !important;  
+    }
+  }
 }
+
+.pip-location .pip-location-container { 
+    margin-bottom: 8px !important;
+    .pip-location-icon-space {
+      padding-left: 24px !important;  
+      padding-right: 24px !important;  
+
+      padding-top: 0px !important;
+      @media (max-width: 1200px) {
+        padding-left: 16px !important;  
+        padding-right: 16px !important;  
+      }
+    }    
+}
+
+.pip-location .pip-location-name.location-collapse {
+  margin-bottom: 0px !important;
+}
+
         
 .pip-location-edit .pip-location-container,        
 .pip-location-edit .pip-location-empty,

@@ -21,7 +21,8 @@ module.exports = {
             '../pip-webui-lib/dist/**/*',            
             // '../pip-webui-test/dist/**/*',
             '../pip-webui-services/dist/**/*',
-            '../pip-webui-themes/dist/**/*'
+            '../pip-webui-themes/dist/**/*',
+            '../pip-webui-layouts/dist/**/*',
         ]
     },
     samples: {

@@ -8,9 +8,10 @@
             'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'LocalStorageModule', 
 
-            'pipServices',
+            'pipServices', 'pipLayout', 
             'pipTheme.Default', 'pipTheme.BootBarn', 'pipTheme', 
-
+            
+            'pipLocations',
             'appLocations.Location', 'appLocations.Dialogs'
         ]
     );
