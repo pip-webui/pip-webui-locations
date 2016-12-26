@@ -4,8 +4,8 @@ declare module pip.locations {
 
 
 
-let google: any;
 
+let google: any;
 
 }
 
