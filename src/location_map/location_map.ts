@@ -28,7 +28,7 @@
     );
 
     thisModule.controller('pipLocationMapController',
-        ['$scope', '$element', '$attrs', '$parse', function ($scope, $element, $attrs, $parse) {
+        ['$scope', '$element', '$attrs', '$parse', '$timeout', function ($scope, $element, $attrs, $parse, $timeout) {
             var
                 $mapContainer = $element.children('.pip-location-container'),
                 $mapControl = null,
@@ -149,7 +149,7 @@
             if (stretchMap) $mapContainer.addClass('stretch');
 
             // Visualize map
-            if ($scope.pipLocationPos() || $scope.pipLocationPositions()) generateMap();
+            if ($scope.pipLocationPos() || $scope.pipLocationPositions()) $timeout(generateMap, 200);
             else clearMap();
         }]
     );
