@@ -36,6 +36,35 @@ class LocationDialogService {
     }
 }
 
+class LocationEditDialogController {
+    private _map = null;
+    private _marker = null;
+
+    public theme: string;
+    public locationPos;
+    public locationName;
+    public supportSet: boolean;
+
+    constructor(
+        $scope: ng.IScope, 
+        $rootScope: ng.IRootScopeService, 
+        $timeout: angular.ITimeoutService, 
+        $mdDialog: angular.material.IDialogService,
+        locationPos, 
+        locationName) {
+
+        this.theme = $rootScope['$theme'];
+        this.locationPos = locationPos && locationPos.type == 'Point'
+                && locationPos.coordinates && locationPos.coordinates.length == 2
+                ? locationPos : null;
+        this.locationName = locationName;
+        this.supportSet = navigator.geolocation != null;
+
+    }
+    
+
+}
+
 (() => {
     'use strict';
     function LocationDialogRun ($injector) {
@@ -61,8 +90,7 @@ class LocationDialogService {
     angular.module('pipLocationEditDialog', ['ngMaterial',  'pipLocations.Templates'])
            .run(LocationDialogRun)
            .service('pipLocationEditDialog', LocationDialogService)
-
-    .controller('pipLocationEditDialogController', 
+           .controller('pipLocationEditDialogController', 
         function ($scope, $rootScope, $timeout, $mdDialog,  locationPos, locationName) {
 
             $scope.theme = $rootScope.$theme;

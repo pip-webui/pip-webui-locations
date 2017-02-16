@@ -158,6 +158,19 @@ var LocationDialogService = (function () {
     };
     return LocationDialogService;
 }());
+var LocationEditDialogController = (function () {
+    function LocationEditDialogController($scope, $rootScope, $timeout, $mdDialog, locationPos, locationName) {
+        this._map = null;
+        this._marker = null;
+        this.theme = $rootScope['$theme'];
+        this.locationPos = locationPos && locationPos.type == 'Point'
+            && locationPos.coordinates && locationPos.coordinates.length == 2
+            ? locationPos : null;
+        this.locationName = locationName;
+        this.supportSet = navigator.geolocation != null;
+    }
+    return LocationEditDialogController;
+}());
 (function () {
     'use strict';
     LocationDialogRun.$inject = ['$injector'];
