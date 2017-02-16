@@ -284,6 +284,7 @@
                 marker = createMarker(coordinates);
                 map.setCenter(coordinates);
                 map.setZoom(12);
+                changeLocation(coordinates, null);
             }, function () {
                 $scope.$apply();
             }, {

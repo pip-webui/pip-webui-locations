@@ -205,7 +205,7 @@
                         map.setCenter(coordinates);
                         map.setZoom(12);
 
-                        // changeLocation(coordinates, tid);
+                        changeLocation(coordinates, null);
                     },
                     function () {
                         // $scope.transaction.end();
