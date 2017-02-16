@@ -131,10 +131,37 @@
     }]);
 })();
 },{}],3:[function(require,module,exports){
+var LocationDialogService = (function () {
+    LocationDialogService.$inject = ['$mdDialog'];
+    function LocationDialogService($mdDialog) {
+        this._$mdDialog = $mdDialog;
+    }
+    LocationDialogService.prototype.show = function (params, successCallback, cancelCallback) {
+        this._$mdDialog.show({
+            controller: 'pipLocationEditDialogController',
+            templateUrl: 'location_dialog/location_dialog.html',
+            locals: {
+                locationName: params.locationName,
+                locationPos: params.locationPos
+            },
+            clickOutsideToClose: true
+        })
+            .then(function (result) {
+            if (successCallback) {
+                successCallback(result);
+            }
+        }, function () {
+            if (cancelCallback) {
+                cancelCallback();
+            }
+        });
+    };
+    return LocationDialogService;
+}());
 (function () {
     'use strict';
-    var thisModule = angular.module('pipLocationEditDialog', ['ngMaterial', 'pipLocations.Templates']);
-    thisModule.run(['$injector', function ($injector) {
+    LocationDialogRun.$inject = ['$injector'];
+    function LocationDialogRun($injector) {
         var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
         if (pipTranslate) {
             pipTranslate.setTranslations('en', {
@@ -150,32 +177,11 @@
                 'LOCATION_REMOVE_PIN': 'Убрать точку'
             });
         }
-    }]);
-    thisModule.factory('pipLocationEditDialog', ['$mdDialog', function ($mdDialog) {
-        return {
-            show: function (params, successCallback, cancelCallback) {
-                $mdDialog.show({
-                    controller: 'pipLocationEditDialogController',
-                    templateUrl: 'location_dialog/location_dialog.html',
-                    locals: {
-                        locationName: params.locationName,
-                        locationPos: params.locationPos
-                    },
-                    clickOutsideToClose: true
-                })
-                    .then(function (result) {
-                    if (successCallback) {
-                        successCallback(result);
-                    }
-                }, function () {
-                    if (cancelCallback) {
-                        cancelCallback();
-                    }
-                });
-            }
-        };
-    }]);
-    thisModule.controller('pipLocationEditDialogController', ['$scope', '$rootScope', '$timeout', '$mdDialog', 'locationPos', 'locationName', function ($scope, $rootScope, $timeout, $mdDialog, locationPos, locationName) {
+    }
+    angular.module('pipLocationEditDialog', ['ngMaterial', 'pipLocations.Templates'])
+        .run(LocationDialogRun)
+        .service('pipLocationEditDialog', LocationDialogService)
+        .controller('pipLocationEditDialogController', ['$scope', '$rootScope', '$timeout', '$mdDialog', 'locationPos', 'locationName', function ($scope, $rootScope, $timeout, $mdDialog, locationPos, locationName) {
         $scope.theme = $rootScope.$theme;
         $scope.locationPos = locationPos && locationPos.type == 'Point'
             && locationPos.coordinates && locationPos.coordinates.length == 2
