@@ -2,6 +2,7 @@ declare module pip.locations {
 
 
 
+
 class LocationDialogService {
     private _$mdDialog;
     constructor($mdDialog: angular.material.IDialogService);
@@ -27,7 +28,6 @@ class LocationEditDialogController {
     onCancel(): void;
     onApply(): void;
 }
-
 
 let google: any;
 
