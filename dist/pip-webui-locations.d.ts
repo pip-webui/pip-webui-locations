@@ -2,6 +2,7 @@ declare module pip.locations {
 
 
 
+let google: any;
 
 class LocationDialogService {
     private _$mdDialog;
@@ -29,7 +30,6 @@ class LocationEditDialogController {
     onApply(): void;
 }
 
-let google: any;
 
 
 }
