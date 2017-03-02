@@ -12,7 +12,7 @@
     }
     .pip-header {
         .pip-progress-top {
-            width: ~"calc(100% + 49px)" !important;
+            width: calc(100% + 49px) !important;
         }
     }
 
