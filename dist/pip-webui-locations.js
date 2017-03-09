@@ -10,7 +10,6 @@
         };
     }]);
 })();
-
 },{}],2:[function(require,module,exports){
 (function () {
     'use strict';
@@ -131,7 +130,6 @@
             clearMap();
     }]);
 })();
-
 },{}],3:[function(require,module,exports){
 var LocationDialogService = (function () {
     LocationDialogService.$inject = ['$mdDialog'];
@@ -323,7 +321,6 @@ var LocationEditDialogController = (function () {
         .service('pipLocationEditDialog', LocationDialogService)
         .controller('pipLocationEditDialogController', LocationEditDialogController);
 })();
-
 },{}],4:[function(require,module,exports){
 (function () {
     'use strict';
@@ -491,7 +488,6 @@ var LocationEditDialogController = (function () {
         };
     }]);
 })();
-
 },{}],5:[function(require,module,exports){
 (function () {
     'use strict';
@@ -591,7 +587,6 @@ var LocationEditDialogController = (function () {
         defineCoordinates();
     }]);
 })();
-
 },{}],6:[function(require,module,exports){
 (function () {
     'use strict';
@@ -702,7 +697,6 @@ var LocationEditDialogController = (function () {
                 clearMap();
         }]);
 })();
-
 },{}],7:[function(require,module,exports){
 (function () {
     'use strict';
@@ -715,7 +709,6 @@ var LocationEditDialogController = (function () {
         'pipLocations.Translate'
     ]);
 })();
-
 },{}],8:[function(require,module,exports){
 (function(module) {
 try {
