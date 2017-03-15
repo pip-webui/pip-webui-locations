@@ -163,6 +163,7 @@
         controller: LocationMapController
     }
 
-    angular.module("pipLocationMap", [])
+    angular
+        .module("pipLocationMap", [])
         .component('pipLocationMap', LocationMap);
 }

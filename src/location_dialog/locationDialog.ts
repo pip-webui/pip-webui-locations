@@ -1,4 +1,7 @@
-export class LocationEditDialogController {
+import { ILocationDialogService } from './ILocationDialogService';
+
+{
+    class LocationEditDialogController {
         private _map = null;
         private _marker = null;
 
@@ -161,8 +164,35 @@ export class LocationEditDialogController {
             })
         }
     }
+    
+    class LocationDialogService implements ILocationDialogService {
+        constructor(
+            private $mdDialog: angular.material.IDialogService
+        ) {}
 
-{
+        public show(params, successCallback?, cancelCallback?) {
+            this.$mdDialog.show({
+                    controller: LocationEditDialogController,
+                    controllerAs: '$ctrl',
+                    templateUrl: 'location_dialog/LocationDialog.html',
+                    locals: {
+                        locationName: params.locationName,
+                        locationPos: params.locationPos
+                    },
+                    clickOutsideToClose: true
+                })
+                .then((result) => {
+                    if (successCallback) {
+                        successCallback(result);
+                    }
+                }, () => {
+                    if (cancelCallback) {
+                        cancelCallback();
+                    }
+                });
+        }
+    }
+
     const LocationDialogRun = function($injector: ng.auto.IInjectorService) {
         let pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
@@ -183,6 +213,8 @@ export class LocationEditDialogController {
     }
 
 
-    angular.module('pipLocationEditDialog')
-        .run(LocationDialogRun);
+    angular
+        .module('pipLocationEditDialog')
+        .run(LocationDialogRun)
+        .service('pipLocationEditDialog', LocationDialogService);
 }

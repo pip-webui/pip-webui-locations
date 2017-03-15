@@ -1,6 +1,4 @@
-﻿/// <reference path="../typings/tsd.d.ts" />
-
-angular.module('pipLocations', [
+﻿angular.module('pipLocations', [
     'pipLocation',
     'pipLocationMap',
     'pipLocationIp',

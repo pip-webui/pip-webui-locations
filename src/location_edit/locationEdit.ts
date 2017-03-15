@@ -1,7 +1,6 @@
 import { ILocationDialogService } from '../location_dialog/ILocationDialogService';
 
 {
-
     interface ILocationEditBindings {
         [key: string]: any;
 
@@ -248,11 +247,12 @@ import { ILocationDialogService } from '../location_dialog/ILocationDialogServic
 
     const LocationEdit: ng.IComponentOptions = {
         bindings: LocationEditBindings,
-        templateUrl: 'location_edit/locationEdit.html',
+        templateUrl: 'location_edit/LocationEdit.html',
         controller: LocationEditController
     }
 
-    angular.module("pipLocationEdit", ['pipLocationEditDialog'])
+    angular
+        .module("pipLocationEdit", ['pipLocationEditDialog'])
         .component('pipLocationEdit', LocationEdit);
 
 }

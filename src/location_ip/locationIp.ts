@@ -149,6 +149,7 @@ declare let google: any;
         controller: LocationIpController
     }
 
-    angular.module("pipLocationIp", [])
+    angular
+        .module("pipLocationIp", [])
         .component('pipLocationIp', LocationIp);
 }

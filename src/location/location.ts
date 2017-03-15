@@ -94,14 +94,20 @@
         }
 
         public $onChanges(changes: LocationBindingsChanges) {
-            this.pipRebind = changes.pipRebind ? changes.pipRebind.currentValue || false : false;
-            this.pipShowLocationIcon = changes.pipShowLocationIcon ? changes.pipShowLocationIcon.currentValue || false : false;
-            this.pipCollapse = changes.pipCollapse ? changes.pipCollapse.currentValue || false : false;
-            this.pipDisabled = changes.pipDisabled ? changes.pipDisabled.currentValue || false : false;
+            this.pipRebind = changes.pipRebind 
+                ? changes.pipRebind.currentValue || false : false;
+            this.pipShowLocationIcon = changes.pipShowLocationIcon 
+                ? changes.pipShowLocationIcon.currentValue || false : false;
+            this.pipCollapse = changes.pipCollapse 
+                ? changes.pipCollapse.currentValue || false : false;
+            this.pipDisabled = changes.pipDisabled 
+                ? changes.pipDisabled.currentValue || false : false;
 
             if (this.pipRebind) {
-                this.pipLocationName = changes.pipLocationName ? changes.pipLocationName.currentValue : null;
-                this.pipLocationPos = changes.pipLocationPos ? changes.pipLocationPos.currentValue : null;
+                this.pipLocationName = changes.pipLocationName 
+                    ? changes.pipLocationName.currentValue : null;
+                this.pipLocationPos = changes.pipLocationPos 
+                    ? changes.pipLocationPos.currentValue : null;
                 this.redrawMap();
             }
         }
@@ -117,7 +123,10 @@
             const location = this.pipLocationPos;
 
             // Safeguard for bad coordinates
-            if (this.showMap === false || location == null || location.coordinates == null || location.coordinates.length < 0) {
+            if (this.showMap === false 
+                || location == null 
+                || location.coordinates == null 
+                || location.coordinates.length < 0) {
                 this.clearMap();
                 return;
             }
@@ -156,10 +165,11 @@
 
     const LocationComponent: ng.IComponentOptions = {
         bindings: LocationBindings,
-        templateUrl: 'location/location.html',
+        templateUrl: 'location/Location.html',
         controller: LocationController
     }
 
-    angular.module("pipLocation", [])
+    angular
+        .module("pipLocation", [])
         .component('pipLocation', LocationComponent);
 }
