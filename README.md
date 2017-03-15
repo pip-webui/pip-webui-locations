@@ -38,6 +38,7 @@ The control can be set to make map collapsable to save some space on screen.
     <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-dialog.png"/>
 </a>
 
+See online samples [here...](http://webui.pipdevs.com/pip-webui-locations/index.html#/location)
 
 ## Learn more about the module
 
@@ -58,7 +59,5 @@ The control can be set to make map collapsable to save some space on screen.
 * [pip-webui-core](https://github.com/pip-webui/pip-webui-core): localization and other core services
 
 ## <a name="license"></a>License
-
-See online samples [here...](http://webui.pipdevs.com/pip-webui-locations/index.html#/location)
 
 This module is released under [MIT license](License) and totally free for commercial and non-commercial use.
