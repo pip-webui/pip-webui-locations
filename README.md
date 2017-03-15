@@ -16,9 +16,8 @@ They are built on the of Google Maps and require registered key to be set by dev
 **Location view** shows address or coordinates if address is not available followed by the map with the point.
 The control can be set to make map collapsable to save some space on screen.
 
-Todo: replace picture with correct screenshot
-<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-edit-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-edit-view.png"/>
+<a href="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-view.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-locations/raw/master/doc/images/img-location-view.png"/>
 </a>
 
 **Location IP** control may look exactly as **Location view**. But instead of position it accepts IP address and uses Google location service to convert it into physical address. This control can be helpful to visualize location of servers or places there users signin into application.
@@ -59,5 +58,7 @@ Todo: replace picture with correct screenshot
 * [pip-webui-core](https://github.com/pip-webui/pip-webui-core): localization and other core services
 
 ## <a name="license"></a>License
+
+See online samples [here...](http://webui.pipdevs.com/pip-webui-locations/index.html#/location)
 
 This module is released under [MIT license](License) and totally free for commercial and non-commercial use.

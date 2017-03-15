@@ -88,31 +88,22 @@ export class LocationEditDialogController {
                 coordinates: [coordinates.lat(), coordinates.lng()]
             };
             this.locationName = null;
-
-            if (tid == null) {
-                // tid = $scope.transaction.begin();
-                if (tid == null) return;
-            }
-
             // Read address
-            let geocoder = new google.maps.Geocoder();
+            const geocoder = new google.maps.Geocoder();
             geocoder.geocode({
-                location: coordinates
+                latLng: coordinates
             }, (results, status) => {
-                // if ($scope.transaction.aborted(tid)) return;
-
                 // Process positive response
-                if (status == google.maps.GeocoderStatus.OK && results && results.length > 0) {
+                if (results && results.length > 0) {
                     this.locationName = results[0].formatted_address;
                 }
 
-                // $scope.transaction.end();
                 this.$scope.$apply();
             })
         }
         // Describe user actions
         public onAddPin() {
-            if (this._map == null) return;
+            if (this._map === null) return;
 
             const coordinates = this._map.getCenter();
             this._marker = this.createMarker(coordinates);
@@ -120,34 +111,29 @@ export class LocationEditDialogController {
         }
 
         public onRemovePin() {
-            if (this._map == null) return;
+            if (this._map === null) return;
             this._marker = this.createMarker(null);
             this.locationPos = null;
             this.locationName = null;
         }
 
         public onZoomIn() {
-            if (this._map == null) return;
+            if (this._map === null) return;
             const zoom = this._map.getZoom();
             this._map.setZoom(zoom + 1);
         }
 
         public onZoomOut() {
-            if (this._map == null) return;
+            if (this._map === null) return;
             const zoom = this._map.getZoom();
             this._map.setZoom(zoom > 1 ? zoom - 1 : zoom);
         }
 
         public onSetLocation = function () {
-            if (this._map == null) return;
-
-            // var tid = $scope.transaction.begin();
-            // if (tid == null) return;
+            if (this._map === null) return;
 
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    // if ($scope.transaction.aborted(tid)) return;
-
                     const coordinates = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     this._marker = this.createMarker(coordinates);
                     this._map.setCenter(coordinates);
@@ -155,7 +141,6 @@ export class LocationEditDialogController {
                     this.changeLocation(coordinates, null);
                 },
                 () => {
-                    // $scope.transaction.end();
                     this.$scope.$apply();
                 }, {
                     maximumAge: 0,

@@ -1,0 +1,13 @@
+<md-input-container class="md-block">
+    <label>{{ 'LOCATION' | translate }}</label>
+    <input ng-model="$ctrl.pipLocationName" ng-disabled="$ctrl.ngDisabled"/>
+</md-input-container>
+<div class="pip-location-empty" layout="column" layout-align="center center">
+    <md-button class="md-raised" ng-disabled="$ctrl.ngDisabled" ng-click="$ctrl.onSetLocation()"
+            aria-label="LOCATION_ADD_LOCATION">
+            <span class="icon-location"></span> {{'LOCATION_ADD_LOCATION' | translate }}
+    </md-button>
+</div>
+<div class="pip-location-container" tabindex="{{ $ctrl.ngDisabled ? -1 : 0 }}" 
+    ng-click="$ctrl.onMapClick($event)" ng-keypress="$ctrl.onMapKeyPress($event)">
+</div>

@@ -2,13 +2,15 @@ import {
     LocationEditDialogController
 } from './locationDialog';
 
+import { ILocationDialogService } from './ILocationDialogService';
+
 {
-    class LocationDialogService {
+    class LocationDialogService implements ILocationDialogService {
         constructor(
             private $mdDialog: angular.material.IDialogService
         ) {}
 
-        public show(params, successCallback, cancelCallback) {
+        public show(params, successCallback?, cancelCallback?) {
             this.$mdDialog.show({
                     controller: LocationEditDialogController,
                     controllerAs: '$ctrl',

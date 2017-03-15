@@ -1,0 +1,18 @@
+<div class="pip-location-name location-collapse" ng-click="$ctrl.pipLocationResize()" ng-if="!$ctrl.pipCollapse"
+    ng-class="$ctrl.pipShowLocationIcon ? 'pip-location-icon-space' : ''">
+    <md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="$ctrl.pipShowLocationIcon"></md-icon>
+    <span class="pip-location-text">{{$ctrl.pipLocationName}}</span>
+</div>
+
+<md-button class="pip-location-name" ng-click="$ctrl.pipLocationResize()" ng-if="$ctrl.pipCollapse"
+    ng-class="$ctrl.pipShowLocationIcon ? 'pip-location-icon-space' : ''">
+    <div class="layout-align-start-center layout-row w-stretch">
+        <md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="$ctrl.pipShowLocationIcon"></md-icon>
+        <span class="pip-location-text flex">{{$ctrl.pipLocationName}}</span>
+        <md-icon md-svg-icon="icons:triangle-down" class="flex-fixed" ng-show="!$ctrl.showMap"></md-icon>
+        <md-icon md-svg-icon="icons:triangle-up" class="flex-fixed" ng-show="$ctrl.showMap"></md-icon>
+    </div>
+</md-button>
+
+<div class="pip-location-container">
+</div>

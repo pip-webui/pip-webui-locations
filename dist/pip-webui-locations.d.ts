@@ -2,23 +2,23 @@ declare module pip.locations {
 
 
 
-class LocationDialogService {
-    private _$mdDialog;
-    constructor($mdDialog: angular.material.IDialogService);
-    show(params: any, successCallback: any, cancelCallback: any): void;
+export interface ILocationDialogService {
+    show(params: any, successCallback?: any, cancelCallback?: any): void;
 }
-class LocationEditDialogController {
+
+
+export class LocationEditDialogController {
+    private $scope;
+    private $mdDialog;
     private _map;
     private _marker;
-    private _$scope;
-    private _$mdDialog;
     theme: string;
     locationPos: any;
     locationName: any;
     supportSet: boolean;
-    constructor($scope: ng.IScope, $rootScope: ng.IRootScopeService, $timeout: angular.ITimeoutService, $mdDialog: angular.material.IDialogService, locationPos: any, locationName: any);
-    createMarker(coordinates: any): any;
-    changeLocation(coordinates: any, tid: any): void;
+    constructor($scope: ng.IScope, $rootScope: ng.IRootScopeService, $timeout: angular.ITimeoutService, $mdDialog: angular.material.IDialogService, locationPos: any, locationName: string);
+    private createMarker(coordinates);
+    private changeLocation(coordinates, tid);
     onAddPin(): void;
     onRemovePin(): void;
     onZoomIn(): void;
@@ -30,6 +30,7 @@ class LocationEditDialogController {
 
 
 let google: any;
+
 
 
 }

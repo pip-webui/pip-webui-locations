@@ -19,7 +19,7 @@
     var content = [
         {
             title: 'Location', state: 'location', url: '/location',
-            controller: 'LocationController', templateUrl: 'location/location.html'
+            controller: 'LocationController', templateUrl: 'location/locationSample.html'
         },
         {
             title: 'Location doalog', state: 'dialogs', url: '/dialogs', 

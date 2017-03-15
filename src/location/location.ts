@@ -1,162 +1,165 @@
-/**
- * @file Location control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve samples in sampler app
- */
+{
+    interface ILocationBindings {
+        [key: string]: any;
 
-/* global angular, google */
+        pipLocationName: any;
+        pipLocationPos: any;
+        pipShowLocationIcon: any;
+        pipCollapse: any;
+        pipRebind: any;
+        pipDisabled: any;
+        pipLocationResize: any;
+    }
 
-(function () {
-    'use strict';
+    const LocationBindings: ILocationBindings = {
+        pipLocationName: '<',
+        pipLocationPos: '<',
+        pipShowLocationIcon: '<',
+        pipCollapse: '<',
+        pipRebind: '<',
+        pipDisabled: '<',
+        pipLocationResize: '&'
+    }
 
-    var thisModule = angular.module("pipLocation", []);
+    class LocationBindingsChanges implements ng.IOnChangesObject, ILocationBindings {
+        [key: string]: any;
 
-    thisModule.directive('pipLocation', 
-        function () {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipLocationName: '&',
-                    pipLocationPos: '&',
-                    pipLocationResize: '&',
-                    pipShowLocationIcon: '='
-                },
-                template: 
-                    function($element, $attrs: any) {
-                        function toBoolean(value) {
-                            if (value == null) return false;
-                            if (!value) return false;
-                            value = value.toString().toLowerCase();
-                            return value == '1' || value == 'true';
-                        }
+        pipLocationName: ng.IChangesObject < string > ;
+        pipLocationPos: ng.IChangesObject < any > ;
+        pipShowLocationIcon: ng.IChangesObject < boolean > ;
+        pipCollapse: ng.IChangesObject < boolean > ;
+        pipRebind: ng.IChangesObject < boolean > ;
+        pipDisabled: ng.IChangesObject < boolean > ;
 
-                        if (toBoolean($attrs.pipCollapse)) {
-                            return String()
-                                + '<div class="pip-location-name location-collapse" ng-click="pipLocationResize()" ng-hide="!pipLocationName()"'
-                                + 'ng-class="pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'">'
-                                + '<md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="pipShowLocationIcon"></md-icon>'
-                                + '<span class="pip-location-text">{{pipLocationName()}}</span> '
-                                + '</div>'
-                                + '<div class="pip-location-container" ng-hide="!pipLocationPos()"></div>';
-                        } else {
-                            return String()
-                                + '<md-button class="pip-location-name" ng-click="pipLocationResize()" '
-                                + 'ng-class="pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'">'
-                                + '<div class="layout-align-start-center layout-row w-stretch">'
-                                + '<md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="pipShowLocationIcon"></md-icon>'
-                                + '<span class="pip-location-text flex">{{pipLocationName()}}</span>'
-                                + '<md-icon md-svg-icon="icons:triangle-down" class="flex-fixed" ng-if="!showMap"></md-icon>'
-                                + '<md-icon md-svg-icon="icons:triangle-up" class="flex-fixed" ng-if="showMap"></md-icon>'
-                                + '</div></md-button>'
-                                + '<div class="pip-location-container"'
-                                + 'ng-class="pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'"></div>';
-                        }
-                    },
-                controller: 'pipLocationController'
-            }
-        }
-    );
+        pipLocationResize: any;
+    }
 
-    thisModule.controller('pipLocationController',
-        function ($scope, $element, $attrs) {
+    class LocationController implements ng.IController, ILocationBindings {
+        public pipLocationName: string;
+        public pipLocationPos: any;
+        public pipShowLocationIcon: boolean;
+        public pipCollapse: boolean;
+        public pipRebind: boolean;
+        public pipDisabled: boolean;
+        public showMap: boolean = true;
+        public pipLocationResize: Function;
 
-            function toBoolean(value) {
-                if (value == null) return false;
-                if (!value) return false;
-                value = value.toString().toLowerCase();
-                return value == '1' || value == 'true';
-            }
+        private name: JQuery;
+        private mapContainer: JQuery;
+        private mapControl: JQuery;
 
-            var 
-                $name = $element.children('.pip-location-name'),
-                $mapContainer = $element.children('.pip-location-container'),
-                $mapControl = null,
-                $up = $element.find('.icon-up'),
-                $down = $element.find('.icon-down'),
-                collapsable = toBoolean($attrs.pipCollapse);
-
-            function clearMap() {
-                // Remove map control
-                if ($mapControl) $mapControl.remove();
-                $mapControl = null;
-                $mapContainer.hide();
-            };
-
-            function generateMap() {
-                var location = $scope.pipLocationPos();
-                
-                // Safeguard for bad coordinates
-                if ($scope.showMap == false || location == null
-                    || location.coordinates == null
-                    || location.coordinates.length < 0) {
-                    clearMap();
-                    return;
-                }
-
-                // Determine map coordinates
-                var coordinates = new google.maps.LatLng(
-                    location.coordinates[0],
-                    location.coordinates[1]
-                );
-
-                // Clean up the control
-                if ($mapControl) $mapControl.remove();
-                $mapControl = $('<div></div>');
-                $mapContainer.show();
-                $mapControl.appendTo($mapContainer);
-
-                // Create the map with point marker
-                var 
-                    mapOptions = {
-                        center: coordinates,
-                        zoom: 12,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        disableDefaultUI: true,
-                        disableDoubleClickZoom: true,
-                        scrollwheel: false,
-                        draggable: false
-                    },
-                    map = new google.maps.Map($mapControl[0], mapOptions);
-                    
-                new google.maps.Marker({
-                    position: coordinates,
-                    map: map
-                });
-            };
-
-            // Process user actions
-            if (!collapsable) {
-                $scope.showMap = false;
-                $up.hide();
-                $mapContainer.hide();
-
-                $name.click(function (event) {
-                    event.stopPropagation();
-                    if ($attrs.disabled) return;
-                    $scope.showMap = !$scope.showMap;
-                    $up[$scope.showMap ? 'show' : 'hide']();
-                    $down[!$scope.showMap ? 'show' : 'hide']();
-                    generateMap();
-                });
-            }
-
-            // Watch for location changes
-            if (toBoolean($attrs.pipRebind)) {
-                $scope.$watch($scope.pipLocationPos,
-                    function (newValue) {
-                        generateMap();
-                    }
-                );
-            }
-
+        constructor(
+            private $element: JQuery,
+            private $timeout: ng.ITimeoutService,
+            private $scope: ng.IScope
+        ) {
+            "ngInject";
             // Add class
             $element.addClass('pip-location');
+        }
+
+        public $postLink() {
+            this.$timeout(() => {
+                this.name = this.$element.find('.pip-location-name');
+                this.mapContainer = this.$element.find('.pip-location-container');
+
+                if (this.pipCollapse === true) {
+                    this.mapContainer.hide();
+                    this.showMap = false;
+
+                    // Process user click
+                    this.name.click((event) => {
+                        event.stopPropagation();
+                        if (this.pipDisabled) return;
+                        this.showMap = !this.showMap;
+                        this.mapContainer[this.showMap ? 'show' : 'hide']();
+                        if (this.showMap) this.generateMap();
+                        if (!this.$scope.$$phase) this.$scope.$apply();
+                    });
+                }
+
+                this.redrawMap();
+            });
+        }
+
+        private redrawMap() {
+            if (!this.mapContainer) return;
 
             // Visualize map
-            if ($scope.pipLocationPos()) generateMap();
-            else clearMap();
-        }    
-    );
+            if (this.pipLocationPos && this.showMap === true) {
+                this.generateMap();
+            } else {
+                this.clearMap();
+            }
+        }
 
-})();
+        public $onChanges(changes: LocationBindingsChanges) {
+            this.pipRebind = changes.pipRebind ? changes.pipRebind.currentValue || false : false;
+            this.pipShowLocationIcon = changes.pipShowLocationIcon ? changes.pipShowLocationIcon.currentValue || false : false;
+            this.pipCollapse = changes.pipCollapse ? changes.pipCollapse.currentValue || false : false;
+            this.pipDisabled = changes.pipDisabled ? changes.pipDisabled.currentValue || false : false;
+
+            if (this.pipRebind) {
+                this.pipLocationName = changes.pipLocationName ? changes.pipLocationName.currentValue : null;
+                this.pipLocationPos = changes.pipLocationPos ? changes.pipLocationPos.currentValue : null;
+                this.redrawMap();
+            }
+        }
+
+        private clearMap() {
+            // Remove map control
+            if (this.mapControl) this.mapControl.remove();
+            this.mapControl = null;
+            this.mapContainer.hide();
+        }
+
+        private generateMap() {
+            const location = this.pipLocationPos;
+
+            // Safeguard for bad coordinates
+            if (this.showMap === false || location == null || location.coordinates == null || location.coordinates.length < 0) {
+                this.clearMap();
+                return;
+            }
+
+            // Determine map coordinates
+            const coordinates = new google.maps.LatLng(
+                location.coordinates[0],
+                location.coordinates[1]
+            );
+
+            // Clean up the control
+            if (this.mapControl) this.mapControl.remove();
+            this.mapControl = $('<div></div>');
+            this.mapContainer.show();
+            this.mapControl.appendTo(this.mapContainer);
+
+            // Create the map with point marker
+            const
+                mapOptions = {
+                    center: coordinates,
+                    zoom: 12,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: true,
+                    disableDoubleClickZoom: true,
+                    scrollwheel: false,
+                    draggable: false
+                },
+                map = new google.maps.Map(this.mapControl[0], mapOptions);
+
+            new google.maps.Marker({
+                position: coordinates,
+                map: map
+            });
+        };
+    }
+
+    const LocationComponent: ng.IComponentOptions = {
+        bindings: LocationBindings,
+        templateUrl: 'location/location.html',
+        controller: LocationController
+    }
+
+    angular.module("pipLocation", [])
+        .component('pipLocation', LocationComponent);
+}
