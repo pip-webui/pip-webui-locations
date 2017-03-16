@@ -1,7 +1,7 @@
 module.exports = {
     module: {
         name: 'pipLocations',
-        styles: 'locations',
+        styles: 'index',
         export: 'pip.locations',
         standalone: 'pip.locations'
     },
