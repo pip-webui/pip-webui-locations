@@ -1,4 +1,5 @@
 import { ILocationDialogService } from './ILocationDialogService';
+import { LocationDialogParams } from './LocationDialogParams';
 
 {
     class LocationEditDialogController {
@@ -15,7 +16,7 @@ import { ILocationDialogService } from './ILocationDialogService';
             $rootScope: ng.IRootScopeService,
             $timeout: angular.ITimeoutService,
             private $mdDialog: angular.material.IDialogService,
-            locationPos,
+            locationPos: any,
             locationName: string
         ) {
             this.theme = $rootScope['$theme'];
@@ -36,7 +37,7 @@ import { ILocationDialogService } from './ILocationDialogService';
                     ) : null;
 
                 // Create the map with point marker
-                let mapOptions = {
+                const mapOptions = {
                     center: new google.maps.LatLng(0, 0),
                     zoom: 1,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -170,7 +171,7 @@ import { ILocationDialogService } from './ILocationDialogService';
             private $mdDialog: angular.material.IDialogService
         ) {}
 
-        public show(params, successCallback?, cancelCallback?) {
+        public show(params: LocationDialogParams, successCallback?, cancelCallback?) {
             this.$mdDialog.show({
                     controller: LocationEditDialogController,
                     controllerAs: '$ctrl',

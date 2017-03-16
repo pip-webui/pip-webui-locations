@@ -1,3 +1,5 @@
+import { LocationDialogParams } from './LocationDialogParams';
+
 export interface ILocationDialogService {
-    show(params, successCallback?, cancelCallback?): void;
+    show(params: LocationDialogParams, successCallback?, cancelCallback?): void;
 }

@@ -43,7 +43,7 @@
             templateUrl: 'location_ip/locationIp.html'
         },
         {
-            title: 'Location doalog',
+            title: 'Location dialog',
             state: 'dialogs',
             url: '/dialogs',
             controller: 'DialogsController',
