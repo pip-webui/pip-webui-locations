@@ -1,4 +1,3 @@
-<h2 class="text-title">{{ 'LOCATION'  | translate }} {{ 'SAMPLES'  | translate }}:</h2>
 <h3 class="text-subhead2">{{ 'LOCATION' | translate }}</h3>
 
 <pip-location class="map-edit" pip-rebind="true"
@@ -43,52 +42,3 @@
         coordinates: [32.393603, -110.982593]
     }
 };</code></pre>
-
-<md-divider class="pip-list-divider"></md-divider>
-
-<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'MAP' | translate }}</h3>
-<pip-location-map class="map-edit" pip-rebind="true"
-                  pip-location-pos="note.location">
-</pip-location-map>
-
-<pre class="text-body1 color-window-bg">
-<h3 class="text-subhead2">{{:: 'CODE' | translate }}</h3>
-<code class="language-markup">&lt;<strong>pip-location-map</strong>  class="map-edit" pip-rebind="true"
-    pip-location-pos="note.location"&gt;
-&lt;/<strong>pip-location-map</strong>&gt;</code></pre>
-
-<md-divider class="pip-list-divider"></md-divider>
-
-<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'EDIT' | translate }}</h3>
-<pip-location-edit class="map-edit" ng-disabled="locationDisabled"
-                   pip-location-name="note.location_name" pip-location-pos="note.location">
-</pip-location-edit>
-
-<md-button class="md-raised md-accent flat"
-           ng-click="locationDisabled = !locationDisabled">{{ locationDisabled ? 'Disable' :'Enable' }}
-</md-button>
-
-<pre class="text-body1 color-window-bg">
-<h3 class="text-subhead2">{{:: 'CODE' | translate }}</h3>
-<code class="language-markup">&lt;<strong>pip-location-edit</strong>  class="map-edit" ng-disabled="locationDisabled"
-    pip-location-name="note.location_name" pip-location-pos="note.location"&gt;
-&lt;/<strong>pip-location-edit</strong>&gt;</code></pre>
-
-<md-divider class="tm8 pip-list-divider"></md-divider>
-
-<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'BY_IP' | translate }}</h3>
-<pip-location-ip class="map-edit" pip-rebind="false"
-                 pip-ipaddress="ipaddress">
-</pip-location-ip>
-
-<pre class="text-body1 color-window-bg">
-<h3 class="text-subhead2">{{:: 'CODE' | translate }}</h3>
-<strong>HTML: </strong>
-
-<code class="language-markup">&lt;<strong>pip-location-ip</strong> class="map-edit" pip-rebind="false"
-    <strong>pip-ipaddress="ipaddress"</strong>&gt;
-&lt;/<strong>pip-location-ip</strong>&gt;
-</code>
-<strong>JS: </strong>
-<code class="language-js">
-<strong>$scope.ipaddress</strong> = '96.17.143.194';</code></pre>

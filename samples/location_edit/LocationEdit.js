@@ -2,9 +2,9 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appLocations.Location', []);
+    var thisModule = angular.module('appLocations.Location');
 
-    thisModule.controller('LocationController',
+    thisModule.controller('LocationEditController',
         function ($scope, $timeout, $injector) {
 
             $timeout(function() {
@@ -22,6 +22,8 @@
                 location1: null,
                 location_name1: null
             };
+
+            $scope.locationDisabled = false;
         }
     );
 

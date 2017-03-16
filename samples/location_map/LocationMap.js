@@ -2,9 +2,9 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appLocations.Location', []);
+    var thisModule = angular.module('appLocations.Location');
 
-    thisModule.controller('LocationController',
+    thisModule.controller('LocationMapController',
         function ($scope, $timeout, $injector) {
 
             $timeout(function() {

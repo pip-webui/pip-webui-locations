@@ -2,6 +2,9 @@ declare module pip.locations {
 
 
 
+
+let google: any;
+
 export interface ILocationDialogService {
     show(params: any, successCallback?: any, cancelCallback?: any): void;
 }
@@ -27,9 +30,6 @@ export class LocationEditDialogController {
     onCancel(): void;
     onApply(): void;
 }
-
-
-let google: any;
 
 
 

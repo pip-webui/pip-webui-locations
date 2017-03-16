@@ -247,14 +247,14 @@ input:focus, p:focus, div:focus, li:focus, md-list-item:focus, md-list:focus, a:
     width: 40px;
     height: 40px;
     top: 16px;
-    right: 34px;
+    right: 16px;
     padding-top: 9px; }
   .pip-dialog.pip-location-edit-dialog .md-fab.pip-zoom-out {
     position: absolute;
     width: 40px;
     height: 40px;
     top: 72px;
-    right: 34px;
+    right: 16px;
     padding-top: 9px; }
   .pip-dialog.pip-location-edit-dialog .md-fab.pip-set-location {
     position: absolute;

@@ -1,0 +1,14 @@
+<h3 class="text-subhead2">{{ 'LOCATION' | translate }} {{ 'EDIT' | translate }}</h3>
+<pip-location-edit class="map-edit" ng-disabled="locationDisabled"
+                   pip-location-name="note.location_name" pip-location-pos="note.location">
+</pip-location-edit>
+
+<md-button class="md-raised md-accent flat"
+           ng-click="locationDisabled = !locationDisabled">{{ locationDisabled ? 'Disable' :'Enable' }}
+</md-button>
+
+<pre class="text-body1 color-window-bg">
+<h3 class="text-subhead2">{{:: 'CODE' | translate }}</h3>
+<code class="language-markup">&lt;<strong>pip-location-edit</strong>  class="map-edit" ng-disabled="locationDisabled"
+    pip-location-name="note.location_name" pip-location-pos="note.location"&gt;
+&lt;/<strong>pip-location-edit</strong>&gt;</code></pre>
