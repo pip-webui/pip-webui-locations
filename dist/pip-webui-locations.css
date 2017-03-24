@@ -213,6 +213,10 @@ input:focus, p:focus, div:focus, li:focus, md-list-item:focus, md-list:focus, a:
   margin-bottom: 0px;
   margin-top: 0px; }
 
+.pip-location-map .pip-location-container.stretch {
+  height: 100%;
+  width: 100%; }
+
 .pip-dialog.pip-location-edit-dialog {
   height: 500px;
   width: 400px;
