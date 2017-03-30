@@ -54,8 +54,7 @@ angular.module('myApp',[..., 'pipLocations']);
 ```html
 <pip-location-map pip-rebind="true"
                   pip-location-pos="position"
-                  pip-location-positions="positions"
-                  pip-draggable="true"
+                  pip-interactive="true"
                   pip-stretch="true">
 </pip-location-map>
 ```
@@ -64,9 +63,8 @@ angular.module('myApp',[..., 'pipLocations']);
 
 ### Attributes
 * **pip-rebind** - means that map will be updated after changing position or positions. Possible values: **true** or **false**.
-* **pip-location-pos** - coordinates of position, which create marker on map. Value: { type: 'point', coordinates: {33.444567, -110.54778} }
-* **pip-location-positions** - coordinate array, which create several markers on map.
-* **pip-draggable** - permission to drag map. Possible values: **true** or **false**.
+* **pip-location-pos** - coordinates of position, which create marker on map or coordinate array, which create several markers on map. Value: { type: 'point', coordinates: {33.444567, -110.54778} } or array of such values.
+* **pip-interactive** - permission to drag and zoom map. Possible values: **true** or **false**.
 * **pip-stretch** - map stretches the length and width of the parent block. Possible values: **true** or **false**.
 
 ## <a name="location"></a> pip-location directive

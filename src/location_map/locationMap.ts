@@ -4,18 +4,16 @@
         [key: string]: any;
 
         pipLocationPos: any;
-        pipLocationPositions: any;
         pipIconPath: any;
-        pipDraggable: any;
+        pipInteractive: any;
         pipStretch: any;
         pipRebind: any;
     }
 
     const LocationMapBindings: ILocationMapBindings = {
         pipLocationPos: '<',
-        pipLocationPositions: '<',
         pipIconPath: '<',
-        pipDraggable: '<',
+        pipInteractive: '<',
         pipStretch: '<',
         pipRebind: '<'
     }
@@ -24,18 +22,16 @@
         [key: string]: any;
 
         pipLocationPos: ng.IChangesObject<any>;
-        pipLocationPositions: ng.IChangesObject<any>;
         pipIconPath: ng.IChangesObject<string>;
-        pipDraggable: ng.IChangesObject<boolean>;
+        pipInteractive: ng.IChangesObject<boolean>;
         pipStretch: ng.IChangesObject<boolean>;
         pipRebind: ng.IChangesObject<boolean>;
     }
 
     class LocationMapController implements ng.IController, ILocationMapBindings {
         public pipLocationPos: any;
-        public pipLocationPositions: any;
         public pipIconPath: string;
-        public pipDraggable: boolean;
+        public pipInteractive: boolean;
         public pipStretch: boolean;
         public pipRebind: boolean;
 
@@ -51,7 +47,7 @@
 
         public $onChanges(changes: LocationMapBindingsChanges) {
             this.pipRebind = changes.pipRebind ? changes.pipRebind.currentValue || false : false;
-            this.pipDraggable = changes.pipDraggable ? changes.pipDraggable.currentValue || false : false;
+            this.pipInteractive = changes.pipInteractive ? changes.pipInteractive.currentValue || false : false;
             this.pipStretch = changes.pipStretch ? changes.pipStretch.currentValue || false : false;
 
             if (this.pipStretch === true)  {
@@ -62,7 +58,6 @@
 
             if (this.pipRebind === true) {
                 this.pipLocationPos = changes.pipLocationPos ? changes.pipLocationPos.currentValue : this.pipLocationPos;
-                this.pipLocationPositions = changes.pipLocationPositions ? changes.pipLocationPositions.currentValue : this.pipLocationPos;
                 this.pipIconPath = changes.pipIconPath ? changes.pipIconPath.currentValue : this.pipIconPath;
 
                 this.generateMap();
@@ -92,16 +87,15 @@
         }
 
         private generateMap() {
-            const location = this.pipLocationPos,
-                locations = this.pipLocationPositions,
+            const locations = this.pipLocationPos,
                 points = [],
-                draggable = this.pipDraggable || false;
+                interactive = this.pipInteractive || false;
 
             // Safeguard for bad coordinates
-            if (this.checkLocation(location)) {
-                points.push(this.determineCoordinates(location));
+            if (this.checkLocation(locations) && !_.isArray(locations)) {
+                points.push(this.determineCoordinates(locations));
             } else {
-                if (locations && locations.length && locations.length > 0) {
+                if (locations && _.isArray(locations) && locations.length > 0) {
                     _.each(locations, (loc) => {
                         if (this.checkLocation(loc)) {
                             points.push(this.determineCoordinates(loc));
@@ -127,8 +121,8 @@
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     disableDefaultUI: true,
                     disableDoubleClickZoom: true,
-                    scrollwheel: draggable,
-                    draggable: draggable
+                    scrollwheel: interactive,
+                    draggable: interactive
                 },
                 map = new google.maps.Map(this.mapControl[0], mapOptions),
                 bounds = new google.maps.LatLngBounds();
