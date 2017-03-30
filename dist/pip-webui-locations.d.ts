@@ -7,11 +7,11 @@ export interface ILocationDialogService {
 }
 
 
-
 export class LocationDialogParams {
     locationPos: any;
     locationName: string;
 }
+
 
 
 let google: any;
