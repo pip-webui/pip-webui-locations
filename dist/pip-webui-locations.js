@@ -12,7 +12,6 @@
         .module('pipLocations.Translate', [])
         .filter('translate', translateFilter);
 }
-
 },{}],2:[function(require,module,exports){
 angular.module('pipLocations', [
     'pipLocation',
@@ -22,7 +21,6 @@ angular.module('pipLocations', [
     'pipLocationEdit',
     'pipLocations.Translate'
 ]);
-
 },{}],3:[function(require,module,exports){
 {
     var LocationBindings = {
@@ -146,11 +144,9 @@ angular.module('pipLocations', [
         .module("pipLocation", [])
         .component('pipLocation', LocationComponent);
 }
-
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -340,7 +336,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .run(LocationDialogRun)
         .service('pipLocationEditDialog', LocationDialogService);
 }
-
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -350,14 +345,201 @@ var LocationDialogParams = (function () {
     return LocationDialogParams;
 }());
 exports.LocationDialogParams = LocationDialogParams;
-
 },{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 angular.module('pipLocationEditDialog', ['ngMaterial', 'pipLocations.Templates']);
 require("./LocationDialog");
-
 },{"./LocationDialog":5}],8:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+{
+    var LocationEditDialogController_1 = (function () {
+        function LocationEditDialogController_1($scope, $rootScope, $timeout, $mdDialog, locationPos, locationName) {
+            var _this = this;
+            this.$scope = $scope;
+            this.$mdDialog = $mdDialog;
+            this._map = null;
+            this._marker = null;
+            this.onSetLocation = function () {
+                var _this = this;
+                if (this._map === null)
+                    return;
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var coordinates = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    _this._marker = _this.createMarker(coordinates);
+                    _this._map.setCenter(coordinates);
+                    _this._map.setZoom(12);
+                    _this.changeLocation(coordinates, null);
+                }, function () {
+                    _this.$scope.$apply();
+                }, {
+                    maximumAge: 0,
+                    enableHighAccuracy: true,
+                    timeout: 5000
+                });
+            };
+            this.theme = $rootScope['$theme'];
+            this.locationPos = locationPos && locationPos.type == 'Point' &&
+                locationPos.coordinates && locationPos.coordinates.length == 2 ?
+                locationPos : null;
+            this.locationName = locationName;
+            this.supportSet = navigator.geolocation != null;
+            $timeout(function () {
+                var mapContainer = $('.pip-location-edit-dialog .pip-location-container');
+                var coordinates = _this.locationPos ?
+                    new google.maps.LatLng(_this.locationPos.coordinates[0], _this.locationPos.coordinates[1]) : null;
+                var mapOptions = {
+                    center: new google.maps.LatLng(0, 0),
+                    zoom: 1,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: true
+                };
+                if (coordinates != null) {
+                    mapOptions.center = coordinates;
+                    mapOptions.zoom = 12;
+                }
+                _this._map = new google.maps.Map(mapContainer[0], mapOptions);
+                _this._marker = _this.createMarker(coordinates);
+                $timeout(function () {
+                    google.maps.event.trigger(_this._map, 'resize');
+                }, 1000);
+            }, 0);
+            $scope.$on('pipLayoutResized', function () {
+                if (_this._map == null)
+                    return;
+                google.maps.event.trigger(_this._map, 'resize');
+            });
+        }
+        LocationEditDialogController_1.prototype.createMarker = function (coordinates) {
+            var _this = this;
+            if (this._marker)
+                this._marker.setMap(null);
+            if (coordinates) {
+                this._marker = new google.maps.Marker({
+                    position: coordinates,
+                    map: this._map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP
+                });
+                var thisMarker_1 = this._marker;
+                google.maps.event.addListener(thisMarker_1, 'dragend', function () {
+                    var coordinates = thisMarker_1.getPosition();
+                    _this.changeLocation(coordinates, null);
+                });
+            }
+            else {
+                this._marker = null;
+            }
+            return this._marker;
+        };
+        LocationEditDialogController_1.prototype.changeLocation = function (coordinates, tid) {
+            var _this = this;
+            this.locationPos = {
+                type: 'Point',
+                coordinates: [coordinates.lat(), coordinates.lng()]
+            };
+            this.locationName = null;
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                latLng: coordinates
+            }, function (results, status) {
+                if (results && results.length > 0) {
+                    _this.locationName = results[0].formatted_address;
+                }
+                _this.$scope.$apply();
+            });
+        };
+        LocationEditDialogController_1.prototype.onAddPin = function () {
+            if (this._map === null)
+                return;
+            var coordinates = this._map.getCenter();
+            this._marker = this.createMarker(coordinates);
+            this.changeLocation(coordinates, null);
+        };
+        LocationEditDialogController_1.prototype.onRemovePin = function () {
+            if (this._map === null)
+                return;
+            this._marker = this.createMarker(null);
+            this.locationPos = null;
+            this.locationName = null;
+        };
+        LocationEditDialogController_1.prototype.onZoomIn = function () {
+            if (this._map === null)
+                return;
+            var zoom = this._map.getZoom();
+            this._map.setZoom(zoom + 1);
+        };
+        LocationEditDialogController_1.prototype.onZoomOut = function () {
+            if (this._map === null)
+                return;
+            var zoom = this._map.getZoom();
+            this._map.setZoom(zoom > 1 ? zoom - 1 : zoom);
+        };
+        LocationEditDialogController_1.prototype.onCancel = function () {
+            this.$mdDialog.cancel();
+        };
+        LocationEditDialogController_1.prototype.onApply = function () {
+            this.$mdDialog.hide({
+                location: this.locationPos,
+                locationPos: this.locationPos,
+                locationName: this.locationName
+            });
+        };
+        return LocationEditDialogController_1;
+    }());
+    var LocationDialogService = (function () {
+        LocationDialogService.$inject = ['$mdDialog'];
+        function LocationDialogService($mdDialog) {
+            this.$mdDialog = $mdDialog;
+        }
+        LocationDialogService.prototype.show = function (params, successCallback, cancelCallback) {
+            this.$mdDialog.show({
+                controller: LocationEditDialogController_1,
+                controllerAs: '$ctrl',
+                templateUrl: 'location_dialog/LocationDialog.html',
+                locals: {
+                    locationName: params.locationName,
+                    locationPos: params.locationPos
+                },
+                clickOutsideToClose: true
+            })
+                .then(function (result) {
+                if (successCallback) {
+                    successCallback(result);
+                }
+            }, function () {
+                if (cancelCallback) {
+                    cancelCallback();
+                }
+            });
+        };
+        return LocationDialogService;
+    }());
+    var LocationDialogRun = function ($injector) {
+        var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+        if (pipTranslate) {
+            pipTranslate.setTranslations('en', {
+                'LOCATION_ADD_LOCATION': 'Add location',
+                'LOCATION_SET_LOCATION': 'Set location',
+                'LOCATION_ADD_PIN': 'Add pin',
+                'LOCATION_REMOVE_PIN': 'Remove pin'
+            });
+            pipTranslate.setTranslations('ru', {
+                'LOCATION_ADD_LOCATION': 'Добавить местоположение',
+                'LOCATION_SET_LOCATION': 'Определить положение',
+                'LOCATION_ADD_PIN': 'Добавить точку',
+                'LOCATION_REMOVE_PIN': 'Убрать точку'
+            });
+        }
+    };
+    LocationDialogRun.$inject = ['$injector'];
+    angular
+        .module('pipLocationEditDialog')
+        .run(LocationDialogRun)
+        .service('pipLocationEditDialog', LocationDialogService);
+}
+},{}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 {
@@ -538,8 +720,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationEdit", ['pipLocationEditDialog'])
         .component('pipLocationEdit', LocationEdit);
 }
-
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 {
     var LocationIpBindings = {
         pipIpaddress: '<',
@@ -640,8 +821,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationIp", [])
         .component('pipLocationIp', LocationIp);
 }
-
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 {
     var LocationMapBindings = {
         pipLocationPos: '<',
@@ -754,8 +934,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationMap", [])
         .component('pipLocationMap', LocationMap);
 }
-
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function(module) {
 try {
   module = angular.module('pipLocations.Templates');
@@ -763,8 +942,25 @@ try {
   module = angular.module('pipLocations.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('location/Location.html',
-    '<div class="pip-location-name location-collapse" ng-click="$ctrl.pipLocationResize()" ng-if="!$ctrl.pipCollapse" ng-class="$ctrl.pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'"><md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="$ctrl.pipShowLocationIcon"></md-icon><span class="pip-location-text">{{$ctrl.pipLocationName}}</span></div><md-button class="pip-location-name" ng-click="$ctrl.pipLocationResize()" ng-if="$ctrl.pipCollapse" ng-class="$ctrl.pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'"><div class="layout-align-start-center layout-row w-stretch"><md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="$ctrl.pipShowLocationIcon"></md-icon><span class="pip-location-text flex">{{$ctrl.pipLocationName}}</span><md-icon md-svg-icon="icons:triangle-down" class="flex-fixed" ng-show="!$ctrl.showMap"></md-icon><md-icon md-svg-icon="icons:triangle-up" class="flex-fixed" ng-show="$ctrl.showMap"></md-icon></div></md-button><div class="pip-location-container"></div>');
+  $templateCache.put('location/location.html',
+    '<div class="pip-location-name location-collapse" ng-click="$ctrl.pipLocationResize()" ng-if="!$ctrl.pipCollapse"\n' +
+    '    ng-class="$ctrl.pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'">\n' +
+    '    <md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="$ctrl.pipShowLocationIcon"></md-icon>\n' +
+    '    <span class="pip-location-text">{{$ctrl.pipLocationName}}</span>\n' +
+    '</div>\n' +
+    '\n' +
+    '<md-button class="pip-location-name" ng-click="$ctrl.pipLocationResize()" ng-if="$ctrl.pipCollapse"\n' +
+    '    ng-class="$ctrl.pipShowLocationIcon ? \'pip-location-icon-space\' : \'\'">\n' +
+    '    <div class="layout-align-start-center layout-row w-stretch">\n' +
+    '        <md-icon md-svg-icon="icons:location" class="flex-fixed pip-icon" ng-if="$ctrl.pipShowLocationIcon"></md-icon>\n' +
+    '        <span class="pip-location-text flex">{{$ctrl.pipLocationName}}</span>\n' +
+    '        <md-icon md-svg-icon="icons:triangle-down" class="flex-fixed" ng-show="!$ctrl.showMap"></md-icon>\n' +
+    '        <md-icon md-svg-icon="icons:triangle-up" class="flex-fixed" ng-show="$ctrl.showMap"></md-icon>\n' +
+    '    </div>\n' +
+    '</md-button>\n' +
+    '\n' +
+    '<div class="pip-location-container">\n' +
+    '</div>');
 }]);
 })();
 
@@ -775,8 +971,20 @@ try {
   module = angular.module('pipLocations.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('location_dialog/LocationDialog.html',
-    '<md-dialog class="pip-dialog pip-location-edit-dialog layout-column" md-theme="{{$ctrl.theme}}"><div class="pip-header layout-column layout-align-start-start"><md-progress-linear ng-show="$ctrl.transaction.busy()" md-mode="indeterminate" class="pip-progress-top"></md-progress-linear><h3 class="flex">{{ \'LOCATION_SET_LOCATION\' | translate }}</h3></div><div class="pip-footer"><div class="layout-row layout-align-start-center"><md-button class="md-accent" ng-click="$ctrl.onAddPin()" ng-show="$ctrl.locationPos == null" ng-disabled="$ctrl.transaction.busy()" aria-label="{{ ::\'LOCATION_ADD_PIN\' }}">{{ ::\'LOCATION_ADD_PIN\' | translate }}</md-button><md-button class="md-accent" ng-click="$ctrl.onRemovePin()" ng-show="$ctrl.locationPos != null" ng-disabled="$ctrl.transaction.busy()" aria-label="{{ ::\'LOCATION_REMOVE_PIN\' }}">{{ ::\'LOCATION_REMOVE_PIN\' | translate }}</md-button></div><div class="flex"></div><div class="layout-row layout-align-end-center"><md-button ng-click="$ctrl.onCancel()" aria-label="{{ ::\'CANCEL\' }}">{{ ::\'CANCEL\' | translate }}</md-button><md-button class="md-accent" ng-click="$ctrl.onApply()" ng-disabled="$ctrl.transaction.busy()" aria-label="{{ ::\'APPLY\' }}">{{ ::\'APPLY\' | translate }}</md-button></div></div><div class="pip-body"><div class="pip-location-container"></div><md-button class="md-icon-button md-fab pip-zoom-in" ng-click="$ctrl.onZoomIn()" aria-label="{{ ::\'LOCATION_ZOOM_IN\' }}"><md-icon md-svg-icon="icons:plus"></md-icon></md-button><md-button class="md-icon-button md-fab pip-zoom-out" ng-click="$ctrl.onZoomOut()" aria-label="{{ ::\'LOCATION_ZOOM_OUT\' }}"><md-icon md-svg-icon="icons:minus"></md-icon></md-button><md-button class="md-icon-button md-fab pip-set-location" ng-click="$ctrl.onSetLocation()" aria-label="{{ ::\'LOCATION_SET_LOCATION\' }}" ng-show="supportSet" ng-disabled="transaction.busy()"><md-icon md-svg-icon="icons:target"></md-icon></md-button></div></md-dialog>');
+  $templateCache.put('location_edit/locationEdit.html',
+    '<md-input-container class="md-block">\n' +
+    '    <label>{{ \'LOCATION\' | translate }}</label>\n' +
+    '    <input ng-model="$ctrl.pipLocationName" ng-disabled="$ctrl.ngDisabled"/>\n' +
+    '</md-input-container>\n' +
+    '<div class="pip-location-empty" layout="column" layout-align="center center">\n' +
+    '    <md-button class="md-raised" ng-disabled="$ctrl.ngDisabled" ng-click="$ctrl.onSetLocation()"\n' +
+    '            aria-label="LOCATION_ADD_LOCATION">\n' +
+    '            <span class="icon-location"></span> {{\'LOCATION_ADD_LOCATION\' | translate }}\n' +
+    '    </md-button>\n' +
+    '</div>\n' +
+    '<div class="pip-location-container" tabindex="{{ $ctrl.ngDisabled ? -1 : 0 }}" \n' +
+    '    ng-click="$ctrl.onMapClick($event)" ng-keypress="$ctrl.onMapKeyPress($event)">\n' +
+    '</div>');
 }]);
 })();
 
@@ -787,14 +995,60 @@ try {
   module = angular.module('pipLocations.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('location_edit/LocationEdit.html',
-    '<md-input-container class="md-block"><label>{{ \'LOCATION\' | translate }}</label> <input ng-model="$ctrl.pipLocationName" ng-disabled="$ctrl.ngDisabled"></md-input-container><div class="pip-location-empty" layout="column" layout-align="center center"><md-button class="md-raised" ng-disabled="$ctrl.ngDisabled" ng-click="$ctrl.onSetLocation()" aria-label="LOCATION_ADD_LOCATION"><span class="icon-location"></span> {{\'LOCATION_ADD_LOCATION\' | translate }}</md-button></div><div class="pip-location-container" tabindex="{{ $ctrl.ngDisabled ? -1 : 0 }}" ng-click="$ctrl.onMapClick($event)" ng-keypress="$ctrl.onMapKeyPress($event)"></div>');
+  $templateCache.put('location_dialog/locationDialog.html',
+    '<md-dialog class="pip-dialog pip-location-edit-dialog layout-column" md-theme="{{$ctrl.theme}}">\n' +
+    '\n' +
+    '    <div class="pip-header layout-column layout-align-start-start">\n' +
+    '        <md-progress-linear ng-show="$ctrl.transaction.busy()" md-mode="indeterminate" class="pip-progress-top">\n' +
+    '        </md-progress-linear>\n' +
+    '        <h3 class="flex">{{ \'LOCATION_SET_LOCATION\' | translate }}</h3>\n' +
+    '    </div>\n' +
+    '    <div class="pip-footer">\n' +
+    '        <div class="layout-row layout-align-start-center">\n' +
+    '            <md-button class="md-accent" ng-click="$ctrl.onAddPin()" ng-show="$ctrl.locationPos == null"\n' +
+    '                ng-disabled="$ctrl.transaction.busy()" aria-label="{{ ::\'LOCATION_ADD_PIN\'  }}">\n' +
+    '                {{ ::\'LOCATION_ADD_PIN\' | translate }}\n' +
+    '            </md-button>\n' +
+    '            <md-button class="md-accent" ng-click="$ctrl.onRemovePin()" ng-show="$ctrl.locationPos != null"\n' +
+    '                ng-disabled="$ctrl.transaction.busy()" aria-label="{{ ::\'LOCATION_REMOVE_PIN\'  }}">\n' +
+    '                {{ ::\'LOCATION_REMOVE_PIN\' | translate }}\n' +
+    '            </md-button>\n' +
+    '        </div>\n' +
+    '        <div class="flex"></div>\n' +
+    '        <div class="layout-row layout-align-end-center">\n' +
+    '            <md-button ng-click="$ctrl.onCancel()" aria-label="{{ ::\'CANCEL\'  }}">\n' +
+    '                {{ ::\'CANCEL\' | translate }}\n' +
+    '            </md-button>\n' +
+    '            <md-button class="md-accent" ng-click="$ctrl.onApply()" ng-disabled="$ctrl.transaction.busy()"\n' +
+    '                aria-label="{{ ::\'APPLY\'  }}">\n' +
+    '                {{ ::\'APPLY\' | translate }}\n' +
+    '            </md-button>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="pip-body">\n' +
+    '        <div class="pip-location-container"></div>\n' +
+    '        <md-button class="md-icon-button md-fab pip-zoom-in" ng-click="$ctrl.onZoomIn()"\n' +
+    '                   aria-label="{{ ::\'LOCATION_ZOOM_IN\'  }}">\n' +
+    '            <md-icon md-svg-icon="icons:plus"></md-icon>\n' +
+    '        </md-button>\n' +
+    '        <md-button class="md-icon-button md-fab pip-zoom-out" ng-click="$ctrl.onZoomOut()"\n' +
+    '                   aria-label="{{ ::\'LOCATION_ZOOM_OUT\'  }}">\n' +
+    '            <md-icon md-svg-icon="icons:minus"></md-icon>\n' +
+    '        </md-button>\n' +
+    '        <md-button class="md-icon-button md-fab pip-set-location" ng-click="$ctrl.onSetLocation()"\n' +
+    '                   aria-label="{{ ::\'LOCATION_SET_LOCATION\'  }}"\n' +
+    '                   ng-show="supportSet" ng-disabled="transaction.busy()">\n' +
+    '            <md-icon md-svg-icon="icons:target"></md-icon>\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '</md-dialog>\n' +
+    '');
 }]);
 })();
 
 
 
-},{}]},{},[11,1,2,4,7,5,6,8,9,10,3])(11)
+},{}]},{},[12,1,2,4,7,8,6,9,10,11,3])(12)
 });
 
 //# sourceMappingURL=pip-webui-locations.js.map
