@@ -12,6 +12,7 @@
         .module('pipLocations.Translate', [])
         .filter('translate', translateFilter);
 }
+
 },{}],2:[function(require,module,exports){
 angular.module('pipLocations', [
     'pipLocation',
@@ -21,6 +22,7 @@ angular.module('pipLocations', [
     'pipLocationEdit',
     'pipLocations.Translate'
 ]);
+
 },{}],3:[function(require,module,exports){
 {
     var LocationBindings = {
@@ -144,9 +146,11 @@ angular.module('pipLocations', [
         .module("pipLocation", [])
         .component('pipLocation', LocationComponent);
 }
+
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -336,6 +340,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .run(LocationDialogRun)
         .service('pipLocationEditDialog', LocationDialogService);
 }
+
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -345,11 +350,13 @@ var LocationDialogParams = (function () {
     return LocationDialogParams;
 }());
 exports.LocationDialogParams = LocationDialogParams;
+
 },{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 angular.module('pipLocationEditDialog', ['ngMaterial', 'pipLocations.Templates']);
 require("./LocationDialog");
+
 },{"./LocationDialog":5}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -531,6 +538,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationEdit", ['pipLocationEditDialog'])
         .component('pipLocationEdit', LocationEdit);
 }
+
 },{}],9:[function(require,module,exports){
 {
     var LocationIpBindings = {
@@ -632,6 +640,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationIp", [])
         .component('pipLocationIp', LocationIp);
 }
+
 },{}],10:[function(require,module,exports){
 {
     var LocationMapBindings = {
@@ -745,6 +754,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationMap", [])
         .component('pipLocationMap', LocationMap);
 }
+
 },{}],11:[function(require,module,exports){
 (function(module) {
 try {
@@ -771,6 +781,30 @@ module.run(['$templateCache', function($templateCache) {
     '</md-button>\n' +
     '\n' +
     '<div class="pip-location-container">\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipLocations.Templates');
+} catch (e) {
+  module = angular.module('pipLocations.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('location_edit/LocationEdit.html',
+    '<md-input-container class="md-block">\n' +
+    '    <label>{{ \'LOCATION\' | translate }}</label>\n' +
+    '    <input ng-model="$ctrl.pipLocationName" ng-disabled="$ctrl.ngDisabled"/>\n' +
+    '</md-input-container>\n' +
+    '<div class="pip-location-empty" layout="column" layout-align="center center">\n' +
+    '    <md-button class="md-raised" ng-disabled="$ctrl.ngDisabled" ng-click="$ctrl.onSetLocation()"\n' +
+    '            aria-label="LOCATION_ADD_LOCATION">\n' +
+    '            <span class="icon-location"></span> {{\'LOCATION_ADD_LOCATION\' | translate }}\n' +
+    '    </md-button>\n' +
+    '</div>\n' +
+    '<div class="pip-location-container" tabindex="{{ $ctrl.ngDisabled ? -1 : 0 }}" \n' +
+    '    ng-click="$ctrl.onMapClick($event)" ng-keypress="$ctrl.onMapKeyPress($event)">\n' +
     '</div>');
 }]);
 })();
@@ -830,30 +864,6 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</md-dialog>\n' +
     '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipLocations.Templates');
-} catch (e) {
-  module = angular.module('pipLocations.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('location_edit/LocationEdit.html',
-    '<md-input-container class="md-block">\n' +
-    '    <label>{{ \'LOCATION\' | translate }}</label>\n' +
-    '    <input ng-model="$ctrl.pipLocationName" ng-disabled="$ctrl.ngDisabled"/>\n' +
-    '</md-input-container>\n' +
-    '<div class="pip-location-empty" layout="column" layout-align="center center">\n' +
-    '    <md-button class="md-raised" ng-disabled="$ctrl.ngDisabled" ng-click="$ctrl.onSetLocation()"\n' +
-    '            aria-label="LOCATION_ADD_LOCATION">\n' +
-    '            <span class="icon-location"></span> {{\'LOCATION_ADD_LOCATION\' | translate }}\n' +
-    '    </md-button>\n' +
-    '</div>\n' +
-    '<div class="pip-location-container" tabindex="{{ $ctrl.ngDisabled ? -1 : 0 }}" \n' +
-    '    ng-click="$ctrl.onMapClick($event)" ng-keypress="$ctrl.onMapKeyPress($event)">\n' +
-    '</div>');
 }]);
 })();
 
