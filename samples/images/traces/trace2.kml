@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Polygon.kml</name>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>https://raw.githubusercontent.com/pip-webui/pip-webui-locations/master/samples/images/traces/point.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>8062ff36</color>
+			<width>10</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>809a59ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>8062ff36</color>
+			<width>10</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>809a59ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+
+    <Placemark>
+		<name>Building 1</name>
+		<description>Building 1</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00005766749382,43.999970093987145,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 2</name>
+		<description>Building 2</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00010594725609,43.99987362287524,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 3</name>
+		<description>Building 3</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00013947486877,43.99982731668581,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 4</name>
+		<description>Building 4</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00017836689949,43.99975013962311,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 5</name>
+		<description>Building 5</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00020116567612,43.99968357432589,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 6</name>
+		<description>Building 6</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00024810433388,43.99959771462933,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 7</name>
+		<description>Building 7</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00026553869247,43.999498348758,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 8</name>
+		<description>Building 8</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00025615096092,43.99936811168437,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 9</name>
+		<description>Building 9</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00025615096092,43.99936811168437,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 10</name>
+		<description>Building 10</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-107.99275803565979,44.00496804770615,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 11</name>
+		<description>Building 11</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00024542212486,43.99910956612817,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 12</name>
+		<description>Building 12</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00026687979698,43.99903238813184,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 13</name>
+		<description>Building 13</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00032052397728,43.9988664550998,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 14</name>
+		<description>Building 14</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.0003956258297,43.99866965020439,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 15</name>
+		<description>Building 15</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00045999884605,43.99849985722107,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 16</name>
+		<description>Building 16</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00058874487877,43.99834549954187,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 17</name>
+		<description>Building 17</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00062629580498,43.99815834031725,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 18</name>
+		<description>Building 18</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00071749091148,43.99801169968752,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 19</name>
+		<description>Building 19</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00081941485405,43.99790364846532,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 20</name>
+		<description>Building 20</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00111445784569,43.99777630212938,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 21</name>
+		<description>Building 21</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00119492411613,43.997679827450504,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 22</name>
+		<description>Building 22</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00129148364067,43.99753318563821,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 23</name>
+		<description>Building 23</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.0014953315258,43.997432851557825,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 24</name>
+		<description>Building 24</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00157579779625,43.997347953357306,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 25</name>
+		<description>Building 25</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00162944197655,43.99727270257803,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 9</name>
+		<description>Building 9</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00170454382896,43.99714728440047,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 10</name>
+		<description>Building 10</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00179305672646,43.99701414789114,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 11</name>
+		<description>Building 11</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00188961625099,43.99670542440124,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 12</name>
+		<description>Building 12</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00188961625099,43.99670542440124,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 13</name>
+		<description>Building 13</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00196471810341,43.996180590782124,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 14</name>
+		<description>Building 14</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00199154019356,43.99600500202769,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 15</name>
+		<description>Building 15</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00235632061958,43.99574258270087,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 16</name>
+		<description>Building 16</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00058874487877,43.99834549954187,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 17</name>
+		<description>Building 17</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00276535749435,43.995525507013035,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 18</name>
+		<description>Building 18</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00308185815811,43.995286240446035,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 19</name>
+		<description>Building 19</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00308185815811,43.995286240446035,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 20</name>
+		<description>Building 20</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00111445784569,43.99777630212938,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 21</name>
+		<description>Building 21</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00308185815811,43.995286240446035,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 22</name>
+		<description>Building 22</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00355258584023,43.99496110650841,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 23</name>
+		<description>Building 23</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00354185700417,43.99523896588928,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 24</name>
+		<description>Building 24</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.00367060303688,43.995509105706645,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+    <Placemark>
+		<name>Building 25</name>
+		<description>Building 25</description>
+		<styleUrl>#sn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>
+				-108.0038181245327,43.995690484608254,0 
+			</coordinates>
+		</Point>
+	</Placemark>
+
+</Document>
+</kml>
