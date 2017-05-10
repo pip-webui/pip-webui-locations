@@ -12,7 +12,6 @@
         .module('pipLocations.Translate', [])
         .filter('translate', translateFilter);
 }
-
 },{}],2:[function(require,module,exports){
 angular.module('pipLocations', [
     'pipLocation',
@@ -22,7 +21,6 @@ angular.module('pipLocations', [
     'pipLocationEdit',
     'pipLocations.Translate'
 ]);
-
 },{}],3:[function(require,module,exports){
 {
     var LocationBindings = {
@@ -146,11 +144,9 @@ angular.module('pipLocations', [
         .module("pipLocation", [])
         .component('pipLocation', LocationComponent);
 }
-
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -340,7 +336,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .run(LocationDialogRun)
         .service('pipLocationEditDialog', LocationDialogService);
 }
-
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -350,13 +345,11 @@ var LocationDialogParams = (function () {
     return LocationDialogParams;
 }());
 exports.LocationDialogParams = LocationDialogParams;
-
 },{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 angular.module('pipLocationEditDialog', ['ngMaterial', 'pipLocations.Templates']);
 require("./LocationDialog");
-
 },{"./LocationDialog":5}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -538,7 +531,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationEdit", ['pipLocationEditDialog'])
         .component('pipLocationEdit', LocationEdit);
 }
-
 },{}],9:[function(require,module,exports){
 {
     var LocationIpBindings = {
@@ -640,7 +632,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationIp", [])
         .component('pipLocationIp', LocationIp);
 }
-
 },{}],10:[function(require,module,exports){
 {
     var LocationMapBindings = {
@@ -754,7 +745,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module("pipLocationMap", [])
         .component('pipLocationMap', LocationMap);
 }
-
 },{}],11:[function(require,module,exports){
 (function(module) {
 try {
