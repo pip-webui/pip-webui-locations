@@ -3,8 +3,8 @@ declare module pip.locations {
 
 
 
-let google: any;
 
+let google: any;
 
 export interface ILocationDialogService {
     show(params: LocationDialogParams, successCallback?: any, cancelCallback?: any): void;
