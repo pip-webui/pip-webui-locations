@@ -47,6 +47,7 @@ import { ILocationDialogService } from '../location_dialog/ILocationDialogServic
             private $scope: ng.IScope,
             private pipLocationEditDialog: ILocationDialogService
         ) {
+            "ngInject";
             this.defineCoordinatesDebounced = _.debounce(() => {
                 this.defineCoordinates
             }, 2000);
@@ -85,7 +86,7 @@ import { ILocationDialogService } from '../location_dialog/ILocationDialogServic
         }
 
         public $onChanges(changes: LocationEditBindingsChanges) {
-            this.ngDisabled = changes.ngDisabled ? changes.ngDisabled.currentValue : false; 
+            this.ngDisabled = changes.ngDisabled ? changes.ngDisabled.currentValue : false;
         }
 
         private clearMap() {
@@ -125,14 +126,14 @@ import { ILocationDialogService } from '../location_dialog/ILocationDialogServic
 
             // Create the map with point marker
             const mapOptions = {
-                    center: coordinates,
-                    zoom: 12,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    disableDefaultUI: true,
-                    disableDoubleClickZoom: true,
-                    scrollwheel: false,
-                    draggable: false
-                },
+                center: coordinates,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true,
+                disableDoubleClickZoom: true,
+                scrollwheel: false,
+                draggable: false
+            },
                 map = new google.maps.Map(this.mapControl[0], mapOptions),
                 marker = new google.maps.Marker({
                     position: coordinates,
@@ -195,9 +196,9 @@ import { ILocationDialogService } from '../location_dialog/ILocationDialogServic
             if (this.ngDisabled) return;
 
             this.pipLocationEditDialog.show({
-                    locationName: this.pipLocationName,
-                    locationPos: this.pipLocationPos
-                },
+                locationName: this.pipLocationName,
+                locationPos: this.pipLocationPos
+            },
                 (result) => {
                     const
                         location = result.location,
