@@ -41,6 +41,7 @@
         constructor(
             private $element: JQuery
         ) {
+            "ngInject";
             this.mapContainer = $element.children('.pip-location-container');
             $element.addClass('pip-location-map');
         }

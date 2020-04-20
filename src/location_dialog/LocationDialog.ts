@@ -19,6 +19,7 @@ import { LocationDialogParams } from './LocationDialogParams';
             locationPos: any,
             locationName: string
         ) {
+            "ngInject";
             this.theme = $rootScope['$theme'];
             this.locationPos = locationPos && locationPos.type == 'Point' &&
                 locationPos.coordinates && locationPos.coordinates.length == 2 ?

@@ -1,10 +1,11 @@
 {
     function translateFilter($injector) {
-        let pipTranslate = $injector.has('pipTranslate') 
+        "ngInject";
+        let pipTranslate = $injector.has('pipTranslate')
             ? $injector.get('pipTranslate') : null;
 
         return function (key) {
-            return pipTranslate  ? pipTranslate.translate(key) || key : key;
+            return pipTranslate ? pipTranslate.translate(key) || key : key;
         }
     }
 

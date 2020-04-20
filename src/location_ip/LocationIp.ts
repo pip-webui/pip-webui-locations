@@ -47,6 +47,7 @@ declare let google: any;
             $element: JQuery,
             private $http: ng.IHttpService
         ) {
+            "ngInject";
             this.mapContainer = $element.children('.pip-location-container');
             $element.addClass('pip-location-ip');
             this.defineCoordinates();

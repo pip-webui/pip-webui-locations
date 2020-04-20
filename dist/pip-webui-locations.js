@@ -2,6 +2,7 @@
 {
     translateFilter.$inject = ['$injector'];
     function translateFilter($injector) {
+        "ngInject";
         var pipTranslate = $injector.has('pipTranslate')
             ? $injector.get('pipTranslate') : null;
         return function (key) {
@@ -152,7 +153,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 Object.defineProperty(exports, "__esModule", { value: true });
 {
     var LocationEditDialogController_1 = (function () {
+        LocationEditDialogController_1.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', 'locationPos', 'locationName'];
         function LocationEditDialogController_1($scope, $rootScope, $timeout, $mdDialog, locationPos, locationName) {
+            "ngInject";
             var _this = this;
             this.$scope = $scope;
             this.$mdDialog = $mdDialog;
@@ -546,7 +549,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
         return LocationIpBindingsChanges;
     }());
     var LocationIpController = (function () {
+        LocationIpController.$inject = ['$element', '$http'];
         function LocationIpController($element, $http) {
+            "ngInject";
             this.$http = $http;
             this.mapContainer = $element.children('.pip-location-container');
             $element.addClass('pip-location-ip');
@@ -649,7 +654,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
         return LocationMapBindingsChanges;
     }());
     var LocationMapController = (function () {
+        LocationMapController.$inject = ['$element'];
         function LocationMapController($element) {
+            "ngInject";
             this.$element = $element;
             this.mapControl = null;
             this.mapContainer = $element.children('.pip-location-container');
